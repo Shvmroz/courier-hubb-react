@@ -1,12 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
-import ProtectedRoute from '../components/ProtectedRoute';
-import PublicRoute from '../components/PublicRoute';
-import MainLayout from '../layouts/MainLayout';
-import SignIn from '../pages/SignIn';
-import Dashboard from '../pages/Dashboard';
-import Jobs from '../pages/Jobs';
-import Messages from '../pages/Messages';
-import NotFound from '../pages/NotFound';
+import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "../layouts/ProtectedRoute";
+import PublicRoute from "../layouts/PublicRoute";
+import MainLayout from "../layouts/MainLayout";
+import SignIn from "../pages/SignIn";
+import Dashboard from "../pages/Dashboard";
+import Jobs from "../pages/Jobs";
+import Messages from "../pages/Messages";
+import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -50,10 +50,7 @@ const AppRoutes = () => {
         }
       />
       {/* 404 routes for both authenticated and unauthenticated users */}
-      <Route
-        path="*"
-        element={<NotFound />}
-      />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
