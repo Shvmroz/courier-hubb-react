@@ -1,5 +1,5 @@
 import { Box, Typography, Paper } from '@mui/material';
-import { MonitorCog } from 'lucide-react';
+import { Monitor as MonitorCog } from 'lucide-react';
 
 const EmailConfigurationPage = () => {
   return (
