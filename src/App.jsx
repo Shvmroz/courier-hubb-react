@@ -1,40 +1,17 @@
-import { Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { AuthProvider } from './contexts/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import PublicRoute from './components/PublicRoute';
-import SignIn from './pages/SignIn';
-import Dashboard from './pages/Dashboard';
-import Jobs from './pages/Jobs';
-import Messages from './pages/Messages';
+import AppRoutes from './routes';
+import theme from './theme';
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="min-h-screen bg-gray-50 font-manrope text-text">
-        <Routes>
-          <Route path="/signin" element={
-            <PublicRoute>
-              <SignIn />
-            </PublicRoute>
-          } />
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/jobs" element={
-            <ProtectedRoute>
-              <Jobs />
-            </ProtectedRoute>
-          } />
-          <Route path="/messages" element={
-            <ProtectedRoute>
-              <Messages />
-            </ProtectedRoute>
-          } />
-        </Routes>
-      </div>
-    </AuthProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

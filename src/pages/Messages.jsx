@@ -1,5 +1,4 @@
-import Layout from '../components/Layout';
-import Button from '../components/Button';
+import { Button } from '@mui/material';
 import {
   Box,
   Paper,
@@ -10,7 +9,6 @@ import { Message } from '@mui/icons-material';
 
 const Messages = () => {
   return (
-    <Layout>
       <Box sx={{ maxWidth: 800, mx: 'auto' }}>
         <Box sx={{ mb: 4 }}>
           <Typography 
@@ -70,12 +68,11 @@ const Messages = () => {
           >
             Once you post jobs and connect with drivers, your conversations will appear here
           </Typography>
-          <Button size="large">
+          <Button variant="contained" color="primary" size="large">
             Start a Conversation
           </Button>
         </Paper>
       </Box>
-    </Layout>
   );
 };
 

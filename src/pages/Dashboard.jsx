@@ -1,5 +1,4 @@
-import Layout from '../components/Layout';
-import Button from '../components/Button';
+import { Button } from '@mui/material';
 import {
   Box,
   Paper,
@@ -108,7 +107,6 @@ const Dashboard = () => {
   ];
 
   return (
-    <Layout>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         {/* Hero Banner */}
         <Paper 
@@ -416,7 +414,7 @@ const Dashboard = () => {
                 >
                   Messages
                 </Typography>
-                <Button variant="text" size="small">
+                <Button variant="text" size="small" color="primary">
                   See All
                 </Button>
               </Box>
@@ -479,7 +477,6 @@ const Dashboard = () => {
           </Grid>
         </Grid>
       </Box>
-    </Layout>
   );
 };
 

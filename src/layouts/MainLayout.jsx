@@ -66,7 +66,7 @@ const Layout = ({ children }) => {
   const drawerWidth = 280;
 
   const drawer = (
-    <Box sx={{ height: '100%', backgroundColor: '#fafe11', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ height: '100%', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ p: 3, borderBottom: '1px solid rgba(33, 33, 33, 0.1)' }}>
         <Typography variant="h5" sx={{ fontWeight: 800, color: '#212121', fontFamily: 'Manrope, sans-serif' }}>
           CourierHubb.
@@ -86,7 +86,7 @@ const Layout = ({ children }) => {
                 sx={{
                   borderRadius: '12px',
                   backgroundColor: active ? '#212121' : 'transparent',
-                  color: active ? '#fafe11' : '#212121',
+                  color: active ? 'primary.main' : 'text.primary',
                   '&:hover': {
                     backgroundColor: active ? '#212121' : 'rgba(33, 33, 33, 0.08)',
                   },

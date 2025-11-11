@@ -1,5 +1,4 @@
-import Layout from '../components/Layout';
-import Button from '../components/Button';
+import { Button } from '@mui/material';
 import {
   Box,
   Paper,
@@ -10,7 +9,6 @@ import { Work } from '@mui/icons-material';
 
 const Jobs = () => {
   return (
-    <Layout>
       <Box sx={{ maxWidth: 800, mx: 'auto' }}>
         <Box sx={{ mb: 4 }}>
           <Typography 
@@ -70,12 +68,11 @@ const Jobs = () => {
           >
             Start by posting your first job to find drivers in your area
           </Typography>
-          <Button size="large">
+          <Button variant="contained" color="primary" size="large">
             Post Your First Job
           </Button>
         </Paper>
       </Box>
-    </Layout>
   );
 };
 

@@ -17,7 +17,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { Google, Apple, Facebook } from '@mui/icons-material';
-import Button from '../components/Button';
+import { Button } from '@mui/material';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -211,6 +211,8 @@ const SignIn = () => {
 
               <Button
                 type="submit"
+                variant="contained"
+                color="primary"
                 fullWidth
                 disabled={loading}
                 sx={{ py: 1.5, mb: 3 }}
