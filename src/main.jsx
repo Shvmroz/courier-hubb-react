@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { PageProvider } from "./contexts/PageContext";
 import AppRoutes from "./routes/Routes";
 import MainLayout from "./layout/MainLayout";
 import { Navigate, useLocation } from "react-router-dom";
@@ -26,7 +27,7 @@ const AppInner = () => {
 
   // If authenticated and tries to go to /login → redirect
   if (user && location.pathname === "/login") {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/home" replace />;
   }
 
   // Public route
@@ -37,9 +38,11 @@ const AppInner = () => {
   // Protected routes (with layout)
   if (user) {
     return (
-      <MainLayout>
-        <AppRoutes />
-      </MainLayout>
+      <PageProvider>
+        <MainLayout>
+          <AppRoutes />
+        </MainLayout>
+      </PageProvider>
     );
   }
 

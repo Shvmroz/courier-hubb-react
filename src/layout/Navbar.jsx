@@ -1,10 +1,12 @@
 import React from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { usePageContext } from "../contexts/PageContext";
 import { useNavigate } from "react-router-dom";
-import { Menu, Bell, Sun, Moon, User, LogOut, Lock } from "lucide-react";
+import { Menu, Bell, Sun, Moon, User, LogOut, Lock, Search } from "lucide-react";
 
 const Navbar = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
+  const { currentPage } = usePageContext();
   const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = React.useState(false);
   const [showNotifications, setShowNotifications] = React.useState(false);
@@ -36,6 +38,30 @@ const Navbar = ({ onMenuClick }) => {
         >
           <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300" />
         </button>
+        
+        {/* Page Title */}
+        <div className="hidden lg:block">
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white font-manrope">
+            {currentPage}
+          </h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-manrope">
+            Find Drivers, Post Jobs, And Get Things Moving.
+          </p>
+        </div>
+      </div>
+
+      {/* Center Section - Search */}
+      <div className="hidden md:flex flex-1 max-w-md mx-8">
+        <div className="relative w-full">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-4 w-4 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 text-sm font-manrope"
+          />
+        </div>
       </div>
 
       {/* Right Section */}
@@ -86,10 +112,10 @@ const Navbar = ({ onMenuClick }) => {
             </div>
 
             <div className="hidden md:block text-left">
-              <div className="text-sm font-medium text-gray-900 dark:text-white">
+              <div className="text-sm font-medium text-gray-900 dark:text-white font-manrope">
                 {user?.name}
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500 dark:text-gray-400 font-manrope">
                 {user?.email}
               </div>
             </div>
@@ -104,14 +130,14 @@ const Navbar = ({ onMenuClick }) => {
               <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50">
                 <button
                   onClick={() => handleNavigation("/profile")}
-                  className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-manrope"
                 >
                   <User className="w-4 h-4" />
                   <span>Profile Settings</span>
                 </button>
                 <button
                   onClick={() => handleNavigation("/change-password")}
-                  className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-manrope"
                 >
                   <Lock className="w-4 h-4" />
                   <span>Change Password</span>
@@ -119,7 +145,7 @@ const Navbar = ({ onMenuClick }) => {
                 <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
                 <button
                   onClick={handleLogoutClick}
-                  className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700 font-manrope"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Logout</span>

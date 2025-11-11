@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-import { Building2, BarChart3, Settings, Home, Building, CreditCard, Mail, Receipt, Wrench, Calendar, Users, Network, Monitor as MonitorCog } from "lucide-react";
+import { usePageContext } from "../contexts/PageContext";
+import { Home, Plus, Briefcase, MessageSquare } from "lucide-react";
 
 // Utility function to combine class names
 const cn = (...classes) => {
@@ -13,92 +13,29 @@ const menuItems = [
   {
     text: "Home",
     icon: Home,
-    path: "/dashboard",
-    color: "text-blue-500 dark:text-blue-300",
+    path: "/home",
+    color: "text-gray-800",
     bgColor: "bg-white",
   },
   {
-    text: "Analytics",
-    icon: BarChart3,
-    path: "/analytics",
-    color: "text-blue-500 dark:text-blue-300",
+    text: "Post a Job",
+    icon: Plus,
+    path: "/post-job",
+    color: "text-gray-800",
     bgColor: "bg-white",
   },
   {
-    text: "Companies",
-    icon: Building,
-    path: "/companies",
-    color: "text-blue-500 dark:text-blue-300",
+    text: "My Jobs",
+    icon: Briefcase,
+    path: "/jobs",
+    color: "text-gray-800",
     bgColor: "bg-white",
   },
   {
-    text: "Organizations",
-    icon: Building2,
-    path: "/organizations",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Events",
-    icon: Calendar,
-    path: "/events",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Email Templates",
-    icon: Mail,
-    path: "/email-templates",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Payment Plans",
-    icon: Receipt,
-    path: "/payment-plans",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "My Team",
-    icon: Network,
-    path: "/team",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Users",
-    icon: Users,
-    path: "/users",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "General Configuration",
-    icon: Settings,
-    path: "/configuration",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Stripe Configuration",
-    icon: CreditCard,
-    path: "/configuration/stripe",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Email Configuration",
-    icon: MonitorCog,
-    path: "/configuration/email",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Settings",
-    icon: Wrench,
-    path: "/settings",
-    color: "text-blue-500 dark:text-blue-300",
+    text: "Messages",
+    icon: MessageSquare,
+    path: "/messages",
+    color: "text-gray-800",
     bgColor: "bg-white",
   },
 ];
@@ -110,28 +47,33 @@ const Sidebar = ({
 }) => {
   const location = useLocation();
   const pathname = location.pathname;
+  const { setCurrentPage } = usePageContext();
+
+  const handleNavClick = (pageName) => {
+    setCurrentPage(pageName);
+    if (variant === "temporary") {
+      onClose();
+    }
+  };
 
   const sidebarContent = (
-    <div className="h-full flex flex-col bg-blue-50 dark:bg-slate-950 shadow-xl border-r border-gray-200 dark:border-gray-700">
+    <div className="h-full flex flex-col bg-yellow-400 shadow-xl">
       {/* Header */}
-      <Link to="/dashboard">
-        <div className="cursor-pointer h-20 px-4 border-gray-200 dark:border-gray-700 flex items-center gap-3">
-          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+      <Link to="/home">
+        <div className="cursor-pointer h-20 px-4 flex items-center gap-3">
+          <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
             <span className="text-2xl">🚚</span>
           </div>
           <div className="mt-1">
-            <h1 className="text-2xl font-extrabold leading-none text-gray-900 dark:text-white">
-              CourierHubb
+            <h1 className="text-2xl font-extrabold leading-none text-black">
+              CourierHubb.
             </h1>
-            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 block -mt-0.5">
-              Logistics Platform
-            </span>
           </div>
         </div>
       </Link>
 
       {/* Navigation */}
-      <div className="flex-1 py-4 px-4 space-y-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
+      <div className="flex-1 py-4 px-4 space-y-2 overflow-y-auto">
         {menuItems.map((item) => {
           const isActive = pathname === item.path;
           const Icon = item.icon;
@@ -140,26 +82,26 @@ const Sidebar = ({
             <Link
               key={item.text}
               to={item.path}
-              onClick={variant === "temporary" ? onClose : undefined}
+              onClick={() => handleNavClick(item.text)}
               className={cn(
-                "flex items-center space-x-3 px-2 py-2 rounded-lg transition-all duration-200 group",
+                "flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-200 group",
                 isActive
-                  ? "bg-blue-200 dark:bg-blue-950 text-sky-900 dark:text-sky-100 shadow-sm"
-                  : "hover:bg-blue-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 hover:scale-102"
+                  ? "bg-black text-yellow-400 shadow-sm"
+                  : "hover:bg-yellow-500 text-black hover:text-black"
               )}
             >
               <div
-                className={`p-1.5 rounded-md transition-colors duration-200 ${
+                className={`p-1 rounded-md transition-colors duration-200 ${
                   isActive
-                    ? `${item.bgColor} dark:bg-gray-700`
-                    : `${item.bgColor} dark:bg-gray-700 group-hover:${item.bgColor}`
+                    ? "bg-yellow-400 text-black"
+                    : "bg-transparent"
                 }`}
               >
-                <Icon className={`w-4 h-4 ${item.color}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-black' : 'text-black'}`} />
               </div>
               <span
-                className={`text-sm ${
-                  isActive ? "font-semibold" : "font-normal"
+                className={`text-sm font-medium ${
+                  isActive ? "font-semibold" : "font-medium"
                 }`}
               >
                 {item.text}
