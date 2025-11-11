@@ -3,11 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Menu, Bell, Sun, Moon, User, LogOut, Lock } from "lucide-react";
 
-interface NavbarProps {
-  onMenuClick: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
+const Navbar = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = React.useState(false);
@@ -25,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
     // Add dark mode logic here
   };
 
-  const handleNavigation = (path: string) => {
+  const handleNavigation = (path) => {
     setShowUserMenu(false);
     navigate(path);
   };

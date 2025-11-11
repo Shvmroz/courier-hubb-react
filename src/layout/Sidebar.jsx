@@ -5,15 +5,9 @@ import { Link } from "react-router-dom";
 import { Building2, BarChart3, Settings, Home, Building, CreditCard, Mail, Receipt, Wrench, Calendar, Users, Network, Monitor as MonitorCog } from "lucide-react";
 
 // Utility function to combine class names
-const cn = (...classes: (string | undefined | null | false)[]): string => {
+const cn = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
-
-interface SidebarProps {
-  open: boolean;
-  onClose: () => void;
-  variant?: "permanent" | "temporary";
-}
 
 const menuItems = [
   {
@@ -109,7 +103,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({
+const Sidebar = ({
   open,
   onClose,
   variant = "temporary",
