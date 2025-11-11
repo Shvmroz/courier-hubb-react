@@ -6,6 +6,7 @@ import SignIn from '../pages/SignIn';
 import Dashboard from '../pages/Dashboard';
 import Jobs from '../pages/Jobs';
 import Messages from '../pages/Messages';
+import NotFound from '../pages/NotFound';
 
 const AppRoutes = () => {
   return (
@@ -47,6 +48,11 @@ const AppRoutes = () => {
             </MainLayout>
           </ProtectedRoute>
         }
+      />
+      {/* 404 routes for both authenticated and unauthenticated users */}
+      <Route
+        path="*"
+        element={<NotFound />}
       />
     </Routes>
   );
