@@ -2,21 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import {
-  Building2,
-  BarChart3,
-  Settings,
-  Home,
-  Building,
-  CreditCard,
-  Mail,
-  Receipt,
-  Wrench,
-  Calendar,
-  Users,
-  Network,
-  MonitorCog,
-} from "lucide-react";
+import { Building2, BarChart3, Settings, Home, Building, CreditCard, Mail, Receipt, Wrench, Calendar, Users, Network, Monitor as MonitorCog } from "lucide-react";
 
 // Utility function to combine class names
 const cn = (...classes: (string | undefined | null | false)[]): string => {
