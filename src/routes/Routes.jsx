@@ -1,56 +1,48 @@
-import { Routes, Route } from "react-router-dom";
-import ProtectedRoute from "../layouts/ProtectedRoute";
-import PublicRoute from "../layouts/PublicRoute";
-import MainLayout from "../layouts/MainLayout";
-import SignIn from "../pages/SignIn";
-import Dashboard from "../pages/Dashboard";
-import Jobs from "../pages/Jobs";
-import Messages from "../pages/Messages";
-import NotFound from "../pages/NotFound";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
+import DashboardPage from "../pages/DashboardPage";
+import AnalyticsPage from "../pages/AnalyticsPage";
+import CompaniesPage from "../pages/CompaniesPage";
+import OrganizationsPage from "../pages/OrganizationsPage";
+import EventsPage from "../pages/EventsPage";
+import EmailTemplatesPage from "../pages/EmailTemplatesPage";
+import PaymentPlansPage from "../pages/PaymentPlansPage";
+import TeamPage from "../pages/TeamPage";
+import ProfilePage from "../pages/ProfilePage";
+import SettingsPage from "../pages/SettingsPage";
+import ChangePasswordPage from "../pages/ChangePasswordPage";
+import ConfigurationPage from "../pages/ConfigurationPage";
+import EmailConfigurationPage from "../pages/EmailConfigurationPage";
+import StripeConfigurationPage from "../pages/StripeConfigurationPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route
-        path="/signin"
-        element={
-          <PublicRoute>
-            <SignIn />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <MainLayout>
-              <Dashboard />
-            </MainLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/jobs"
-        element={
-          <ProtectedRoute>
-            <MainLayout>
-              <Jobs />
-            </MainLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/messages"
-        element={
-          <ProtectedRoute>
-            <MainLayout>
-              <Messages />
-            </MainLayout>
-          </ProtectedRoute>
-        }
-      />
-      {/* 404 routes for both authenticated and unauthenticated users */}
-      <Route path="*" element={<NotFound />} />
+      {/* Public Routes */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Protected Routes */}
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/analytics" element={<AnalyticsPage />} />
+      <Route path="/companies" element={<CompaniesPage />} />
+      <Route path="/organizations" element={<OrganizationsPage />} />
+      <Route path="/events" element={<EventsPage />} />
+      <Route path="/email-templates" element={<EmailTemplatesPage />} />
+      <Route path="/payment-plans" element={<PaymentPlansPage />} />
+      <Route path="/team" element={<TeamPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/change-password" element={<ChangePasswordPage />} />
+      <Route path="/configuration" element={<ConfigurationPage />} />
+      <Route path="/configuration/email" element={<EmailConfigurationPage />} />
+      <Route path="/configuration/stripe" element={<StripeConfigurationPage />} />
+
+      {/* Redirect root → dashboard */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+      {/* Catch-all route */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

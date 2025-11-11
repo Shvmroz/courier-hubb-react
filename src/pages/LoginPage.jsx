@@ -19,7 +19,7 @@ import {
 import { Google, Apple, Facebook } from '@mui/icons-material';
 import { Button } from '@mui/material';
 
-const SignIn = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -39,7 +39,7 @@ const SignIn = () => {
     const result = await login(email, password);
     
     if (result.success) {
-      navigate('/');
+      navigate('/dashboard');
     } else {
       setError(result.error);
     }
@@ -283,7 +283,7 @@ const SignIn = () => {
                 fontFamily: 'Manrope, sans-serif'
               }}
             >
-              Already have an account?{' '}
+              Don't have an account?{' '}
               <Link 
                 href="#" 
                 sx={{ 
@@ -293,7 +293,7 @@ const SignIn = () => {
                   fontFamily: 'Manrope, sans-serif'
                 }}
               >
-                Log In
+                Sign Up
               </Link>
             </Typography>
           </Paper>
@@ -303,4 +303,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LoginPage;

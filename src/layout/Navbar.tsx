@@ -1,41 +1,28 @@
 import React from "react";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Menu, Bell, Sun, Moon, User, LogOut, Lock } from "lucide-react";
-import NotificationsList from "@/components/notifications/NotificationsList";
-import ConfirmDeleteDialog from "@/components/ui/confirm-delete-dialog";
-import { s3baseUrl } from "@/config/config";
 
-interface TopbarProps {
+interface NavbarProps {
   onMenuClick: () => void;
 }
 
-const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
-  const { user, logout, darkMode, toggleDarkMode, unreadNotificationsCount } =
-    useAppContext();
-
+const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = React.useState(false);
   const [showNotifications, setShowNotifications] = React.useState(false);
-  const [showLogoutDialog, setShowLogoutDialog] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  const [darkMode, setDarkMode] = React.useState(false);
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = async () => {
     setShowUserMenu(false);
-    setShowLogoutDialog(true);
+    await logout();
+    navigate('/login');
   };
 
-  const confirmLogout = async () => {
-    setLoading(true);
-    try {
-      await logout(); // wait for logout to complete
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setShowLogoutDialog(false);
-      setShowUserMenu(false);
-      setLoading(false);
-    }
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // Add dark mode logic here
   };
 
   const handleNavigation = (path: string) => {
@@ -64,34 +51,10 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
             className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <Bell className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-            {unreadNotificationsCount > 0 && (
-              <span
-                className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] flex items-center 
-                justify-center font-bold min-w-[18px] h-[18px] rounded-full px-1 leading-none"
-              >
-                {unreadNotificationsCount}
-              </span>
-            )}
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] flex items-center justify-center font-bold min-w-[18px] h-[18px] rounded-full px-1 leading-none">
+              3
+            </span>
           </button>
-
-          {showNotifications && (
-            <>
-              <div
-                className="fixed inset-0 z-40"
-                onClick={() => setShowNotifications(false)}
-              />
-              <div
-                className="fixed top-[70px] left-1/2 -translate-x-1/2 
-                    w-[90vw] max-w-[400px] max-h-screen z-50
-                    md:absolute md:right-0 md:mt-2 md:top-auto md:left-auto
-                    md:translate-x-0 md:w-96"
-              >
-                <NotificationsList
-                  onClose={() => setShowNotifications(false)}
-                />
-              </div>
-            </>
-          )}
         </div>
 
         {/* Theme Toggle */}
@@ -112,11 +75,11 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
             onClick={() => setShowUserMenu(!showUserMenu)}
             className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <div className="w-8 h-8 rounded-full  p-[2px] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full p-[2px] flex items-center justify-center">
               <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-                {user?.profile_image ? (
+                {user?.avatar ? (
                   <img
-                    src={s3baseUrl + user.profile_image}
+                    src={user.avatar}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -128,7 +91,7 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
 
             <div className="hidden md:block text-left">
               <div className="text-sm font-medium text-gray-900 dark:text-white">
-                {user?.first_name} {user?.last_name}
+                {user?.name}
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
                 {user?.email}
@@ -170,19 +133,8 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
           )}
         </div>
       </div>
-
-      <ConfirmDeleteDialog
-        open={showLogoutDialog}
-        onOpenChange={setShowLogoutDialog}
-        title="Confirm Logout"
-        content="Are you sure you want to logout? You will need to sign in again to access your account."
-        confirmButtonText="Logout"
-        cancelButtonText="Cancel"
-        onConfirm={confirmLogout}
-        loading={loading}
-      />
     </div>
   );
 };
 
-export default Topbar;
+export default Navbar;

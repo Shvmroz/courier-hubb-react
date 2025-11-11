@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";
 
 import {
   Building2,
@@ -19,6 +18,11 @@ import {
   MonitorCog,
 } from "lucide-react";
 
+// Utility function to combine class names
+const cn = (...classes: (string | undefined | null | false)[]): string => {
+  return classes.filter(Boolean).join(' ');
+};
+
 interface SidebarProps {
   open: boolean;
   onClose: () => void;
@@ -27,30 +31,16 @@ interface SidebarProps {
 
 const menuItems = [
   {
-    text: "Dashboard",
+    text: "Home",
     icon: Home,
     path: "/dashboard",
     color: "text-blue-500 dark:text-blue-300",
     bgColor: "bg-white",
   },
   {
-    text: "My Team",
-    icon: Network,
-    path: "/team",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Payment Plans",
-    icon: Receipt,
-    path: "/payment-plans",
-    color: "text-blue-500 dark:text-blue-300",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Organizations",
-    icon: Building2,
-    path: "/organizations",
+    text: "Analytics",
+    icon: BarChart3,
+    path: "/analytics",
     color: "text-blue-500 dark:text-blue-300",
     bgColor: "bg-white",
   },
@@ -62,16 +52,16 @@ const menuItems = [
     bgColor: "bg-white",
   },
   {
-    text: "Events",
-    icon: Calendar,
-    path: "/events",
+    text: "Organizations",
+    icon: Building2,
+    path: "/organizations",
     color: "text-blue-500 dark:text-blue-300",
     bgColor: "bg-white",
   },
   {
-    text: "Users",
-    icon: Users,
-    path: "/users",
+    text: "Events",
+    icon: Calendar,
+    path: "/events",
     color: "text-blue-500 dark:text-blue-300",
     bgColor: "bg-white",
   },
@@ -83,9 +73,23 @@ const menuItems = [
     bgColor: "bg-white",
   },
   {
-    text: "Analytics",
-    icon: BarChart3,
-    path: "/analytics",
+    text: "Payment Plans",
+    icon: Receipt,
+    path: "/payment-plans",
+    color: "text-blue-500 dark:text-blue-300",
+    bgColor: "bg-white",
+  },
+  {
+    text: "My Team",
+    icon: Network,
+    path: "/team",
+    color: "text-blue-500 dark:text-blue-300",
+    bgColor: "bg-white",
+  },
+  {
+    text: "Users",
+    icon: Users,
+    path: "/users",
     color: "text-blue-500 dark:text-blue-300",
     bgColor: "bg-white",
   },
@@ -132,17 +136,15 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Header */}
       <Link to="/dashboard">
         <div className="cursor-pointer h-20 px-4 border-gray-200 dark:border-gray-700 flex items-center gap-3">
-          <img
-            src="/assets/exiby_logo.png"
-            alt="ExiBy Logo"
-            className="w-12 h-12 object-contain"
-          />
+          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+            <span className="text-2xl">🚚</span>
+          </div>
           <div className="mt-1">
-            <h1 className="text-3xl font-extrabold leading-none bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-              EXIBY
+            <h1 className="text-2xl font-extrabold leading-none text-gray-900 dark:text-white">
+              CourierHubb
             </h1>
-            <span className="text-sm font-semibold text-gray-500 dark:text-gray-400 block -mt-0.5">
-              Event Management
+            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 block -mt-0.5">
+              Logistics Platform
             </span>
           </div>
         </div>
