@@ -79,33 +79,3 @@ Input.displayName = "Input";
 TextField.displayName = "TextField";
 
 export { Input, TextField };
-
-        <input
-          type={type === "password" && showPassword ? "text" : type}
-          ref={ref}
-          onKeyDown={handleKeyDown}
-          className={combinedClassName}
-          {...props}
-        />
-
-        {type === "password" && (
-          <button
-            type="button"
-            tabIndex={-1}
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-200"
-          >
-            <Icon
-              icon={showPassword ? "mdi:eye-off-outline" : "mdi:eye-outline"}
-              className="w-5 h-5"
-            />
-          </button>
-        )}
-      </div>
-    );
-  }
-);
-
-Input.displayName = "Input";
-
-export { Input };
