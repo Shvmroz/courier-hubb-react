@@ -12,6 +12,7 @@ const AppInner = () => {
   const location = useLocation();
 
   const publicRoutes = ["/login"];
+  const publicRoutes = ["/login", "/forgot-password"];
   const isPublicRoute = publicRoutes.includes(location.pathname);
 
   if (loading) {
@@ -23,7 +24,7 @@ const AppInner = () => {
   }
 
   // If authenticated and tries to go to /login → redirect
-  if (user && location.pathname === "/login") {
+  if (user && (location.pathname === "/login" || location.pathname === "/forgot-password")) {
     return <Navigate to="/home" replace />;
   }
 
