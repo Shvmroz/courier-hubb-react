@@ -22,6 +22,9 @@ const theme = createTheme({
     error: {
       main: '#f44336',
     },
+    grey: {
+      500: '#9e9e9e', // standard gray for focus border
+    },
   },
   typography: {
     fontFamily: 'Manrope, sans-serif',
@@ -58,6 +61,7 @@ const theme = createTheme({
         },
       },
     },
+
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -67,9 +71,22 @@ const theme = createTheme({
           '& .MuiInputBase-input': {
             fontFamily: 'Manrope, sans-serif',
           },
+          '& .MuiOutlinedInput-root': {
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#9e9e9e', // gray focus border
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#9e9e9e',
+            },
+          },
+          '& .MuiInputLabel-root.Mui-focused': {
+            color: '#9e9e9e', // gray focus label
+          },
         },
       },
     },
+
+ 
   },
 });
 

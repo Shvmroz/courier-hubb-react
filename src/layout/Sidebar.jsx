@@ -1,107 +1,62 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { usePageContext } from "../contexts/PageContext";
-import { Home, Plus, Briefcase, MessageSquare } from "lucide-react";
+import { Icon } from "@iconify/react";
 
-// Utility function to combine class names
-const cn = (...classes) => {
-  return classes.filter(Boolean).join(' ');
-};
+const cn = (...classes) => classes.filter(Boolean).join(" ");
 
 const menuItems = [
-  {
-    text: "Home",
-    icon: Home,
-    path: "/home",
-    color: "text-gray-800",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Post a Job",
-    icon: Plus,
-    path: "/post-job",
-    color: "text-gray-800",
-    bgColor: "bg-white",
-  },
-  {
-    text: "My Jobs",
-    icon: Briefcase,
-    path: "/jobs",
-    color: "text-gray-800",
-    bgColor: "bg-white",
-  },
-  {
-    text: "Messages",
-    icon: MessageSquare,
-    path: "/messages",
-    color: "text-gray-800",
-    bgColor: "bg-white",
-  },
+  { text: "Home", icon: "material-symbols:home-rounded", path: "/home" },
+  { text: "Post a Job", icon: "mdi:plus-circle-outline", path: "/post-job" },
+  { text: "My Jobs", icon: "mdi:briefcase-outline", path: "/jobs" },
+  { text: "Messages", icon: "mdi:message-text-outline", path: "/messages" },
 ];
 
-const Sidebar = ({
-  open,
-  onClose,
-  variant = "temporary",
-}) => {
+const Sidebar = ({ open, onClose, variant = "temporary" }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const { setCurrentPage } = usePageContext();
 
   const handleNavClick = (pageName) => {
     setCurrentPage(pageName);
-    if (variant === "temporary") {
-      onClose();
-    }
+    if (variant === "temporary") onClose();
   };
 
   const sidebarContent = (
-    <div className="h-full flex flex-col bg-yellow-400 shadow-xl">
+    <div className="h-full flex flex-col bg-[#fafe11] shadow-xl relative">
       {/* Header */}
       <Link to="/home">
-        <div className="cursor-pointer h-20 px-4 flex items-center gap-3">
-          <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-            <span className="text-2xl">🚚</span>
-          </div>
-          <div className="mt-1">
-            <h1 className="text-2xl font-extrabold leading-none text-black">
-              CourierHubb.
-            </h1>
-          </div>
+        <div className="cursor-pointer py-10 px-4 flex items-center">
+          <img src="/sidebar_logo.jpg" alt="Logo" className="w-[100%]" />
         </div>
       </Link>
 
       {/* Navigation */}
-      <div className="flex-1 py-4 px-4 space-y-2 overflow-y-auto">
+      <div className="flex-1 pb-4 pt-1 px-2 space-y-1 overflow-y-auto">
         {menuItems.map((item) => {
           const isActive = pathname === item.path;
-          const Icon = item.icon;
-
           return (
             <Link
               key={item.text}
               to={item.path}
               onClick={() => handleNavClick(item.text)}
               className={cn(
-                "flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-200 group",
+                "flex items-center space-x-3 px-3 rounded-[12px] transition-all duration-200 group",
+                "h-[48px]", 
                 isActive
-                  ? "bg-black text-yellow-400 shadow-sm"
-                  : "hover:bg-yellow-500 text-black hover:text-black"
+                  ? "bg-black text-[#fafe11]"
+                  : "text-black hover:bg-black/10"
               )}
             >
-              <div
-                className={`p-1 rounded-md transition-colors duration-200 ${
-                  isActive
-                    ? "bg-yellow-400 text-black"
-                    : "bg-transparent"
+              <Icon
+                icon={item.icon}
+                className={`w-8 h-8 ${
+                  isActive ? "text-[#fafe11]" : "text-black"
                 }`}
-              >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-black' : 'text-black'}`} />
-              </div>
+              />
               <span
-                className={`text-sm font-medium ${
-                  isActive ? "font-semibold" : "font-medium"
+                className={`text-md ${
+                  isActive ? "font-extrabold" : "font-medium"
                 }`}
               >
                 {item.text}
@@ -130,8 +85,8 @@ const Sidebar = ({
       {/* Mobile Sidebar */}
       <div
         className={cn(
-          "fixed inset-y-0 left-0 w-80 z-50 lg:hidden",
-          open ? "block" : "hidden"
+          "fixed inset-y-0 left-0 w-80 z-50 lg:hidden transition-transform duration-300",
+          open ? "translate-x-0" : "-translate-x-full"
         )}
       >
         {sidebarContent}
