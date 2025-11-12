@@ -1,78 +1,33 @@
-import { Button } from '@mui/material';
-import {
-  Box,
-  Paper,
-  Typography,
-  Avatar
-} from '@mui/material';
-import { Message } from '@mui/icons-material';
+import Button from '../components/ui/Button';
+import { MessageCircle } from 'lucide-react';
 
 const Messages = () => {
   return (
-      <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-        <Box sx={{ mb: 4 }}>
-          <Typography 
-            variant="h3" 
-            sx={{ 
-              fontWeight: 700, 
-              color: '#212121', 
-              mb: 1,
-              fontFamily: 'Manrope, sans-serif'
-            }}
-          >
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-text mb-2 font-manrope">
             Messages
-          </Typography>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              color: '#666',
-              fontFamily: 'Manrope, sans-serif',
-              fontWeight: 400
-            }}
-          >
+          </h1>
+          <p className="text-xl text-gray-600 font-manrope font-normal">
             Communicate with drivers and manage your conversations
-          </Typography>
-        </Box>
+          </p>
+        </div>
 
-        <Paper sx={{ p: 6, borderRadius: 3, textAlign: 'center' }}>
-          <Avatar 
-            sx={{ 
-              width: 80, 
-              height: 80, 
-              backgroundColor: '#fafe11',
-              color: '#212121',
-              mx: 'auto', 
-              mb: 3,
-              fontSize: '2rem'
-            }}
-          >
-            <Message sx={{ fontSize: '2rem' }} />
-          </Avatar>
-          <Typography 
-            variant="h5" 
-            sx={{ 
-              fontWeight: 600, 
-              mb: 2,
-              fontFamily: 'Manrope, sans-serif'
-            }}
-          >
+        <div className="bg-white p-12 rounded-3xl shadow-sm text-center">
+          <div className="w-20 h-20 bg-primary text-text rounded-full flex items-center justify-center mx-auto mb-6">
+            <MessageCircle className="w-10 h-10" />
+          </div>
+          <h2 className="text-2xl font-semibold mb-4 font-manrope">
             No Messages Yet
-          </Typography>
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              color: '#666', 
-              mb: 4,
-              fontFamily: 'Manrope, sans-serif'
-            }}
-          >
+          </h2>
+          <p className="text-gray-600 mb-8 font-manrope">
             Once you post jobs and connect with drivers, your conversations will appear here
-          </Typography>
+          </p>
           <Button variant="contained" color="primary" size="large">
             Start a Conversation
           </Button>
-        </Paper>
-      </Box>
+        </div>
+      </div>
   );
 };
 

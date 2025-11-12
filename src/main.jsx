@@ -1,13 +1,10 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { PageProvider } from "./contexts/PageContext";
 import AppRoutes from "./routes/Routes";
 import MainLayout from "./layout/MainLayout";
 import { Navigate, useLocation } from "react-router-dom";
-import theme from './theme';
 import "./index.css";
 
 const AppInner = () => {
@@ -52,12 +49,9 @@ const AppInner = () => {
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AuthProvider>
-        <AppInner />
-      </AuthProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <AppInner />
+    </AuthProvider>
   );
 };
 

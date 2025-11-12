@@ -1,6 +1,6 @@
-import { Box, Typography, Button, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Home, ArrowBack } from "@mui/icons-material";
+import Button from "../components/ui/Button";
+import { Home, ArrowLeft } from "lucide-react";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -14,27 +14,38 @@ const NotFoundPage = () => {
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "70vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "text.primary",
-      }}
-    >
-      <Container maxWidth="md">
-        <Box sx={{ textAlign: "center" }}>
+    <div className="min-h-[70vh] flex items-center justify-center text-text">
+      <div className="max-w-2xl mx-auto px-4">
+        <div className="text-center">
           {/* Large 404 */}
-          <Typography variant="h3">404</Typography>
+          <h1 className="text-6xl font-bold mb-4 font-manrope">404</h1>
 
           {/* Error message */}
-          <Typography variant="subtitle">Page Not Found</Typography>
+          <h2 className="text-2xl font-semibold mb-8 font-manrope">Page Not Found</h2>
 
-  
-        </Box>
-      </Container>
-    </Box>
+          <div className="flex gap-4 justify-center">
+            <Button 
+              onClick={handleGoBack}
+              variant="outlined"
+              color="default"
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Go Back
+            </Button>
+            <Button 
+              onClick={handleGoHome}
+              variant="contained"
+              color="primary"
+              className="flex items-center gap-2"
+            >
+              <Home className="w-4 h-4" />
+              Go Home
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

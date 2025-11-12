@@ -1,34 +1,19 @@
-import { Button } from '@mui/material';
+import Button from '../components/ui/Button';
 import {
-  Box,
-  Paper,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  Avatar,
-  Chip,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Divider
-} from '@mui/material';
-import {
-  Schedule,
+  Clock,
   CheckCircle,
-  LocalShipping,
-  Message,
-  LocationOn,
-  ArrowForward
-} from '@mui/icons-material';
+  Truck,
+  MessageCircle,
+  MapPin,
+  ArrowRight
+} from 'lucide-react';
 
 const Dashboard = () => {
   const stats = [
-    { label: 'Active Jobs', value: '03', icon: LocalShipping, color: '#2196f3' },
+    { label: 'Active Jobs', value: '03', icon: Truck, color: '#2196f3' },
     { label: 'Completed Jobs', value: '08', icon: CheckCircle, color: '#4caf50' },
-    { label: 'New Bids', value: '03', icon: Schedule, color: '#ff9800' },
-    { label: 'New Messages', value: '03', icon: Message, color: '#9c27b0' },
+    { label: 'New Bids', value: '03', icon: Clock, color: '#ff9800' },
+    { label: 'New Messages', value: '03', icon: MessageCircle, color: '#9c27b0' },
   ];
 
   const jobs = [
@@ -107,376 +92,177 @@ const Dashboard = () => {
   ];
 
   return (
-      <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+      <div className="max-w-7xl mx-auto">
         {/* Hero Banner */}
-        <Paper 
-          sx={{ 
-            background: 'linear-gradient(135deg, #212121 0%, #424242 100%)',
-            color: 'white',
-            p: 4,
-            borderRadius: 3,
-            mb: 4,
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          <Grid container alignItems="center" spacing={3}>
-            <Grid item xs={12} md={8}>
-              <Typography 
-                variant="h4" 
-                sx={{ 
-                  fontWeight: 700, 
-                  mb: 2,
-                  fontFamily: 'Manrope, sans-serif'
-                }}
-              >
+        <div className="bg-gradient-to-br from-gray-800 to-gray-700 text-white p-8 rounded-3xl mb-8 relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div className="md:col-span-2">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 font-manrope">
                 Need to send something? Post your first job for{' '}
-                <Box component="span" sx={{ color: '#fafe11' }}>FREE!</Box>
-              </Typography>
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  opacity: 0.9,
-                  fontFamily: 'Manrope, sans-serif',
-                  fontWeight: 400
-                }}
-              >
+                <span className="text-primary">FREE!</span>
+              </h1>
+              <h2 className="text-xl opacity-90 font-manrope font-normal">
                 Find Drivers, Post Jobs, And Get Things Moving.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={4} sx={{ textAlign: 'center' }}>
-              <Box 
-                sx={{ 
-                  width: 100, 
-                  height: 100, 
-                  backgroundColor: '#fafe11', 
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '3rem',
-                  mx: 'auto'
-                }}
-              >
+              </h2>
+            </div>
+            <div className="text-center">
+              <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-5xl mx-auto">
                 🚚
-              </Box>
-            </Grid>
-          </Grid>
-        </Paper>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <Grid container spacing={3}>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column */}
-          <Grid item xs={12} lg={8}>
+          <div className="lg:col-span-2">
             {/* Quick Stats */}
-            <Paper sx={{ p: 3, mb: 3, borderRadius: 3 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                <Typography 
-                  variant="h6" 
-                  sx={{ 
-                    fontWeight: 600,
-                    fontFamily: 'Manrope, sans-serif'
-                  }}
-                >
+            <div className="bg-white p-6 mb-6 rounded-3xl shadow-sm">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-semibold font-manrope">
                   Quick Stats
-                </Typography>
-                <Chip 
-                  label="Last 7 days" 
-                  size="small" 
-                  sx={{ 
-                    backgroundColor: '#f5f5f5',
-                    fontFamily: 'Manrope, sans-serif'
-                  }} 
-                />
-              </Box>
-              <Grid container spacing={2}>
+                </h3>
+                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-manrope">
+                  Last 7 days
+                </span>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {stats.map((stat) => {
                   const Icon = stat.icon;
                   return (
-                    <Grid item xs={6} md={3} key={stat.label}>
-                      <Card 
-                        sx={{ 
-                          backgroundColor: '#212121',
-                          color: 'white',
-                          textAlign: 'center',
-                          borderRadius: 2
-                        }}
-                      >
-                        <CardContent sx={{ py: 3 }}>
-                          <Icon sx={{ fontSize: 32, mb: 1, color: stat.color }} />
-                          <Typography 
-                            variant="h4" 
-                            sx={{ 
-                              fontWeight: 700, 
-                              mb: 1,
-                              fontFamily: 'Manrope, sans-serif'
-                            }}
-                          >
+                    <div key={stat.label} className="bg-text text-white text-center rounded-2xl p-6">
+                      <Icon className="w-8 h-8 mb-2 mx-auto" style={{ color: stat.color }} />
+                      <div className="text-3xl font-bold mb-2 font-manrope">
                             {stat.value}
-                          </Typography>
-                          <Typography 
-                            variant="body2" 
-                            sx={{ 
-                              opacity: 0.8,
-                              fontFamily: 'Manrope, sans-serif'
-                            }}
-                          >
+                      </div>
+                      <div className="text-sm opacity-80 font-manrope">
                             {stat.label}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Grid>
+                      </div>
+                    </div>
                   );
                 })}
-              </Grid>
-            </Paper>
+              </div>
+            </div>
 
             {/* Posted Jobs */}
-            <Paper sx={{ p: 3, borderRadius: 3 }}>
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  fontWeight: 600, 
-                  mb: 3,
-                  fontFamily: 'Manrope, sans-serif'
-                }}
-              >
+            <div className="bg-white p-6 rounded-3xl shadow-sm">
+              <h3 className="text-xl font-semibold mb-6 font-manrope">
                 Posted Jobs
-              </Typography>
-              <Grid container spacing={2}>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {jobs.map((job) => (
-                  <Grid item xs={12} md={6} key={job.id}>
-                    <Card 
-                      sx={{ 
-                        borderRadius: 2,
-                        border: '1px solid #e0e0e0',
-                        '&:hover': {
-                          boxShadow: 3,
-                          transform: 'translateY(-2px)',
-                          transition: 'all 0.2s ease-in-out'
-                        }
-                      }}
-                    >
-                      <CardContent>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                            <Avatar 
-                              sx={{ 
-                                backgroundColor: '#fafe11',
-                                color: '#212121',
-                                width: 48,
-                                height: 48
-                              }}
-                            >
+                  <div key={job.id} className="border border-gray-200 rounded-2xl p-4 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary text-text rounded-full flex items-center justify-center text-xl">
                               {job.icon}
-                            </Avatar>
-                            <Box>
-                              <Typography 
-                                variant="subtitle1" 
-                                sx={{ 
-                                  fontWeight: 600,
-                                  fontFamily: 'Manrope, sans-serif'
-                                }}
-                              >
+                        </div>
+                        <div>
+                          <h4 className="font-semibold font-manrope">
                                 {job.title}
-                              </Typography>
-                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                <LocationOn sx={{ fontSize: 16, color: '#666' }} />
-                                <Typography 
-                                  variant="body2" 
-                                  sx={{ 
-                                    color: '#666',
-                                    fontFamily: 'Manrope, sans-serif'
-                                  }}
-                                >
+                          </h4>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4 text-gray-500" />
+                            <span className="text-sm text-gray-500 font-manrope">
                                   {job.location}
-                                </Typography>
-                              </Box>
-                            </Box>
-                          </Box>
-                          <ArrowForward sx={{ color: '#666' }} />
-                        </Box>
-                      </CardContent>
-                    </Card>
-                  </Grid>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-5 h-5 text-gray-500" />
+                    </div>
+                  </div>
                 ))}
-              </Grid>
-            </Paper>
-          </Grid>
+              </div>
+            </div>
+          </div>
 
           {/* Right Column */}
-          <Grid item xs={12} lg={4}>
+          <div>
             {/* Total Spend */}
-            <Paper sx={{ p: 3, mb: 3, borderRadius: 3 }}>
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  fontWeight: 600, 
-                  mb: 3,
-                  fontFamily: 'Manrope, sans-serif'
-                }}
-              >
+            <div className="bg-white p-6 mb-6 rounded-3xl shadow-sm">
+              <h3 className="text-xl font-semibold mb-6 font-manrope">
                 Total Spend
-              </Typography>
-              <Box sx={{ space: 2 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: '#666',
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 font-manrope">
                     On Completed Jobs
-                  </Typography>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontWeight: 600,
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                  </span>
+                  <span className="font-semibold font-manrope">
                     $250.00
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: '#666',
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 font-manrope">
                     This Month
-                  </Typography>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontWeight: 600,
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                  </span>
+                  <span className="font-semibold font-manrope">
                     $120
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: '#666',
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 font-manrope">
                     Last Month
-                  </Typography>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontWeight: 600,
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                  </span>
+                  <span className="font-semibold font-manrope">
                     $90
-                  </Typography>
-                </Box>
-                <Divider sx={{ my: 2 }} />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontWeight: 600,
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                  </span>
+                </div>
+                <div className="border-t pt-4">
+                  <div className="flex justify-between">
+                    <span className="font-semibold font-manrope">
                     Total
-                  </Typography>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontWeight: 600,
-                      fontFamily: 'Manrope, sans-serif'
-                    }}
-                  >
+                    </span>
+                    <span className="font-semibold font-manrope">
                     $250
-                  </Typography>
-                </Box>
-              </Box>
-            </Paper>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Messages */}
-            <Paper sx={{ p: 3, borderRadius: 3 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                <Typography 
-                  variant="h6" 
-                  sx={{ 
-                    fontWeight: 600,
-                    fontFamily: 'Manrope, sans-serif'
-                  }}
-                >
+            <div className="bg-white p-6 rounded-3xl shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-semibold font-manrope">
                   Messages
-                </Typography>
+                </h3>
                 <Button variant="text" size="small" color="primary">
                   See All
                 </Button>
-              </Box>
-              <List sx={{ p: 0 }}>
+              </div>
+              <div className="space-y-0">
                 {messages.map((message, index) => (
-                  <Box key={message.id}>
-                    <ListItem 
-                      sx={{ 
-                        px: 0,
-                        borderRadius: 2,
-                        '&:hover': {
-                          backgroundColor: '#f5f5f5'
-                        }
-                      }}
-                    >
-                      <ListItemAvatar>
-                        <Avatar src={message.avatar} alt={message.name} />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary={
-                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <Typography 
-                              variant="subtitle2" 
-                              sx={{ 
-                                fontWeight: 600,
-                                fontFamily: 'Manrope, sans-serif'
-                              }}
-                            >
-                              {message.name}
-                            </Typography>
-                            <Typography 
-                              variant="caption" 
-                              sx={{ 
-                                color: '#666',
-                                fontFamily: 'Manrope, sans-serif'
-                              }}
-                            >
-                              {message.time}
-                            </Typography>
-                          </Box>
-                        }
-                        secondary={
-                          <Typography 
-                            variant="body2" 
-                            sx={{ 
-                              color: '#666',
-                              fontFamily: 'Manrope, sans-serif'
-                            }}
-                          >
-                            {message.message}
-                          </Typography>
-                        }
+                  <div key={message.id}>
+                    <div className="flex items-center gap-3 p-3 rounded-2xl hover:bg-gray-50 transition-colors">
+                      <img 
+                        src={message.avatar} 
+                        alt={message.name}
+                        className="w-10 h-10 rounded-full"
                       />
-                    </ListItem>
-                    {index < messages.length - 1 && <Divider />}
-                  </Box>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center">
+                          <h4 className="font-semibold text-sm font-manrope">
+                              {message.name}
+                          </h4>
+                          <span className="text-xs text-gray-500 font-manrope">
+                              {message.time}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 font-manrope">
+                            {message.message}
+                        </p>
+                      </div>
+                    </div>
+                    {index < messages.length - 1 && <div className="border-t"></div>}
+                  </div>
                 ))}
-              </List>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Box>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   );
 };
 

@@ -1,59 +1,29 @@
-import { Box, Typography, Paper } from '@mui/material';
 import { Lock } from 'lucide-react';
 
 const ChangePasswordPage = () => {
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-      <Box sx={{ mb: 4 }}>
-        <Typography 
-          variant="h3" 
-          sx={{ 
-            fontWeight: 700, 
-            color: '#212121', 
-            mb: 1,
-            fontFamily: 'Manrope, sans-serif'
-          }}
-        >
+    <div className="max-w-4xl mx-auto">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-text mb-2 font-manrope">
           Change Password
-        </Typography>
-        <Typography 
-          variant="h6" 
-          sx={{ 
-            color: '#666',
-            fontFamily: 'Manrope, sans-serif',
-            fontWeight: 400
-          }}
-        >
+        </h1>
+        <p className="text-xl text-gray-600 font-manrope font-normal">
           Update your account password
-        </Typography>
-      </Box>
+        </p>
+      </div>
 
-      <Paper sx={{ p: 6, borderRadius: 3, textAlign: 'center' }}>
+      <div className="bg-white p-12 rounded-3xl shadow-sm text-center">
         <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
           <Lock className="w-10 h-10 text-gray-800" />
         </div>
-        <Typography 
-          variant="h5" 
-          sx={{ 
-            fontWeight: 600, 
-            mb: 2,
-            fontFamily: 'Manrope, sans-serif'
-          }}
-        >
+        <h2 className="text-2xl font-semibold mb-4 font-manrope">
           Change Password
-        </Typography>
-        <Typography 
-          variant="body1" 
-          sx={{ 
-            color: '#666', 
-            mb: 4,
-            fontFamily: 'Manrope, sans-serif'
-          }}
-        >
+        </h2>
+        <p className="text-gray-600 mb-8 font-manrope">
           Password change functionality coming soon
-        </Typography>
-      </Paper>
-    </Box>
+        </p>
+      </div>
+    </div>
   );
 };
 

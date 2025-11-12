@@ -8,50 +8,51 @@ const Button = React.forwardRef(
       color = "default",
       size = "default",
       fullWidth = false,
+      disabled = false,
+      type = "button",
       children,
       ...props
     },
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+      "inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] font-manrope";
 
     const sizes = {
-      sm: "h-8 px-3 rounded-md text-sm",
-      md: "h-9 px-4 rounded-md text-sm",
-      lg: "h-11 px-6 rounded-md text-base",
-      xl: "h-12 px-8 rounded-lg text-lg",
-      default: "h-9 px-4 rounded-md text-sm",
+      small: "h-8 px-3 text-sm",
+      medium: "h-10 px-4 text-sm",
+      large: "h-12 px-6 text-base",
+      default: "h-10 px-4 text-sm",
     };
 
     const colorVariants = {
       primary: {
         contained:
-          "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 shadow-sm",
+          "bg-primary text-text hover:bg-primary-dark focus:ring-primary shadow-sm",
         outlined:
-          "border border-blue-600 bg-transparent text-blue-600 hover:bg-blue-50 focus:ring-blue-500",
-        text: "bg-transparent text-blue-600 hover:bg-blue-50 focus:ring-blue-500",
+          "border border-primary bg-transparent text-primary hover:bg-primary/10 focus:ring-primary",
+        text: "bg-transparent text-primary hover:bg-primary/10 focus:ring-primary",
       },
-      success: {
+      secondary: {
         contained:
-          "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm",
+          "bg-text text-primary hover:bg-gray-800 focus:ring-text shadow-sm",
         outlined:
-          "border border-green-600 bg-transparent text-green-600 hover:bg-green-50 focus:ring-green-500",
-        text: "bg-transparent text-green-600 hover:bg-green-50 focus:ring-green-500",
+          "border border-text bg-transparent text-text hover:bg-gray-50 focus:ring-text",
+        text: "bg-transparent text-text hover:bg-gray-50 focus:ring-text",
       },
       error: {
         contained:
-          "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm",
+          "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 shadow-sm",
         outlined:
-          "border border-red-600 bg-transparent text-red-600 hover:bg-red-50 focus:ring-red-500",
-        text: "bg-transparent text-red-600 hover:bg-red-50 focus:ring-red-500",
+          "border border-red-500 bg-transparent text-red-500 hover:bg-red-50 focus:ring-red-500",
+        text: "bg-transparent text-red-500 hover:bg-red-50 focus:ring-red-500",
       },
       default: {
         contained:
-          "border bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-300 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:focus:ring-gray-600",
+          "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-300 shadow-sm",
         outlined:
-          "border border-gray-300 bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-500",
-        text: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-500",
+          "border border-gray-300 bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300",
+        text: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300",
       },
     };
 
@@ -70,7 +71,8 @@ const Button = React.forwardRef(
     return (
       <button
         ref={ref}
-        type={props.type || "button"}
+        type={type}
+        disabled={disabled}
         className={combinedClassName}
         {...props}
       >
