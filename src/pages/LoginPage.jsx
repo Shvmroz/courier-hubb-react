@@ -34,23 +34,26 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex font-manrope">
       {/* Left side - Logo */}
-      <div className="hidden lg:flex w-1/2 bg-primary items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-5xl font-extrabold text-text mb-4 font-manrope">
-            CourierHubb.
-          </h1>
-          <h2 className="text-xl text-text opacity-80 font-manrope">
-            Find Drivers, Post Jobs, And Get Things Moving
-          </h2>
+      <div className="hidden lg:flex w-1/2 bg-primary items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          <img 
+            src="/login_logo.jpg" 
+            alt="CourierHubb Logo" 
+            className="w-full h-auto rounded-2xl shadow-lg"
+          />
         </div>
       </div>
 
       {/* Right side - Sign in form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-white">
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="lg:hidden text-center mb-8">
-            <img src="/sidebar_logo.jpg" alt="Logo" className="w-full" />
+            <img 
+              src="/login_logo.jpg" 
+              alt="CourierHubb Logo" 
+              className="w-full max-w-sm mx-auto rounded-2xl shadow-lg"
+            />
           </div>
 
           <div className="p-4 w-full">
@@ -119,12 +122,13 @@ const LoginPage = () => {
                   </span>
                 </label>
 
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  onClick={() => navigate("/forgot-password")}
                   className="text-sm text-red-500 hover:text-red-600 font-manrope no-underline"
                 >
                   Forgot Password?
-                </a>
+                </button>
               </div>
 
               <Button
