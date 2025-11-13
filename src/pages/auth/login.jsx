@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useApp } from "../../contexts/AppContext";
 import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
-import { Chrome, Apple, Facebook } from "lucide-react";
 import { Icon } from "@iconify/react";
 import Checkbox from "../../components/ui/CheckBox";
 

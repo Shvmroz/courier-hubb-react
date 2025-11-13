@@ -52,7 +52,7 @@ export const Input = React.forwardRef(
               type="button"
               tabIndex={-1}
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
+              className="absolute inset-y-0 right-3 flex items-center text-gray-300 hover:text-gray-400"
             >
               {showPassword ? (
                 <EyeOff className="w-5 h-5" />
