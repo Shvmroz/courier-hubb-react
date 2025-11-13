@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { TextField } from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import { Chrome, Apple, Facebook } from "lucide-react";
+import { Icon } from "@iconify/react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("temp@gmail.com");
@@ -32,35 +33,26 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex font-manrope">
+    <div className="min-h-screen flex">
       {/* Left side - Logo */}
-      <div className="hidden lg:flex w-1/2 bg-primary items-center justify-center p-8">
-        <div className="w-full max-w-md">
-          <img 
-            src="/login_logo.jpg" 
-            alt="CourierHubb Logo" 
-            className="w-full h-auto rounded-2xl shadow-lg"
+      <div className="hidden lg:flex w-1/2 bg-white p-8 items-center justify-center">
+        <div className="w-full h-full bg-primary rounded-3xl flex items-center justify-center">
+          <img
+            src="/login_logo.jpg"
+            alt="CourierHubb Logo"
+            className="max-w-sm max-h-full object-contain"
           />
         </div>
       </div>
 
       {/* Right side - Sign in form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-white">
-        <div className="w-full max-w-md">
-          {/* Mobile logo */}
-          <div className="lg:hidden text-center mb-8">
-            <img 
-              src="/login_logo.jpg" 
-              alt="CourierHubb Logo" 
-              className="w-full max-w-sm mx-auto rounded-2xl shadow-lg"
-            />
-          </div>
-
+        <div className="w-full max-w-[90%]">
           <div className="p-4 w-full">
             <h1 className="text-3xl font-bold text-text mb-2 font-manrope">
               Sign In
             </h1>
-            <p className="text-gray-600 mb-6 font-manrope">
+            <p className="text-gray-600 mb-4 font-semibold text-sm">
               Please sign in your account to continue.
             </p>
 
@@ -70,11 +62,11 @@ const LoginPage = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="mb-6">
-              <div className="mb-4">
+            <form onSubmit={handleSubmit} className="">
+              <div className="mb-6">
                 <TextField
                   type="email"
-                  label="Email Address"
+                  placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -82,10 +74,10 @@ const LoginPage = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-6">
                 <TextField
                   type="password"
-                  label="Password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -93,7 +85,7 @@ const LoginPage = () => {
                 />
               </div>
 
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center my-6">
                 <label className="flex items-center gap-2 cursor-pointer select-none">
                   <div className="relative">
                     <input
@@ -125,7 +117,7 @@ const LoginPage = () => {
                 <button
                   type="button"
                   onClick={() => navigate("/forgot-password")}
-                  className="text-sm text-red-500 hover:text-red-600 font-manrope no-underline"
+                  className="text-sm text-rose-500 hover:text-rose-700 font-semibold no-underline"
                 >
                   Forgot Password?
                 </button>
@@ -138,49 +130,56 @@ const LoginPage = () => {
                 fullWidth
                 disabled={loading}
                 size="large"
-                className="mb-6"
               >
                 {loading ? "Signing In..." : "Login"}
               </Button>
             </form>
 
-            <div className="relative mb-6">
+            <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
+                <div className="w-full mx-6 border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-600 font-manrope">
+                <span className="px-2 bg-white text-gray-400">
                   Or continue with
                 </span>
               </div>
             </div>
 
             <div className="grid grid-cols-3 gap-4 mb-6">
-              <button
-                type="button"
-                className="flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              <a
+                href="https://accounts.google.com/signin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
               >
-                <Chrome className="w-5 h-5" />
-              </button>
-              <button
-                type="button"
-                className="flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                <Icon icon="devicon:google" className="w-6 h-6" />
+              </a>
+
+              <a
+                href="https://www.apple.com/apple-id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
               >
-                <Apple className="w-5 h-5" />
-              </button>
-              <button
-                type="button"
-                className="flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                <Icon icon="icomoon-free:appleinc" className="w-6 h-6" />
+              </a>
+
+              <a
+                href="https://www.facebook.com/login/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
               >
-                <Facebook className="w-5 h-5" />
-              </button>
+                <Icon icon="logos:facebook" className="w-6 h-6" />
+              </a>
             </div>
 
             <p className="text-center text-sm text-gray-600 font-manrope">
               Don't have an account?{" "}
               <a
                 href="#"
-                className="text-text font-medium hover:text-gray-800 no-underline font-manrope"
+                className="text-text font-bold hover:text-gray-600 no-underline font-manrope"
               >
                 Sign Up
               </a>

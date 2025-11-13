@@ -14,7 +14,7 @@ const ForgotPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
@@ -29,48 +29,38 @@ const ForgotPasswordPage = () => {
   return (
     <div className="min-h-screen flex font-manrope bg-gray-100">
       {/* Left side - Logo */}
-      <div className="hidden lg:flex w-1/2 bg-primary items-center justify-center p-8">
-        <div className="w-full max-w-md">
-          <img 
-            src="/login_logo.jpg" 
-            alt="CourierHubb Logo" 
-            className="w-full h-auto rounded-2xl shadow-lg"
+      <div className="hidden lg:flex w-1/2 bg-white p-8 items-center justify-center">
+        <div className="w-full h-full bg-primary rounded-3xl flex items-center justify-center">
+          <img
+            src="/login_logo.jpg"
+            alt="CourierHubb Logo"
+            className="max-w-sm max-h-full object-contain"
           />
         </div>
       </div>
 
       {/* Right side - Forgot Password form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-white">
-        <div className="w-full max-w-md">
-          {/* Mobile logo */}
-          <div className="lg:hidden text-center mb-8">
-            <img 
-              src="/login_logo.jpg" 
-              alt="CourierHubb Logo" 
-              className="w-full max-w-sm mx-auto rounded-2xl shadow-lg"
-            />
-          </div>
-
-          <div className="p-4 w-full">
-            <h1 className="text-3xl font-bold text-text mb-2 font-manrope">
+        <div className="w-full max-w-[90%]">
+          <div className="p-4 w-full flex flex-col space-y-3">
+            <h1 className="text-3xl font-bold text-text font-manrope">
               Forgot Password
             </h1>
-            <p className="text-gray-600 mb-8 font-manrope">
-              Forgot your password? No worries! Enter your email to reset it instantly.
+
+            <p className="text-gray-600 font-semibold text-sm">
+            Forgot your password? No worries! Enter your email <br/> below to receive a reset link.
             </p>
 
-            <form onSubmit={handleSubmit} className="mb-6">
-              <div className="mb-6">
-                <TextField
-                  type="email"
-                  placeholder="Samu@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  fullWidth
-                  className="h-12"
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+              <TextField
+                type="email"
+                placeholder="Samu@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                fullWidth
+                className="h-12"
+              />
 
               <Button
                 type="submit"
@@ -79,7 +69,7 @@ const ForgotPasswordPage = () => {
                 fullWidth
                 disabled={loading}
                 size="large"
-                className="mb-6 h-12"
+                className="h-12"
               >
                 {loading ? "Sending..." : "Send Password Reset Link"}
               </Button>
@@ -102,19 +92,22 @@ const ForgotPasswordPage = () => {
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        title="Check Your Email"
         size="sm"
         hideFooter={true}
       >
         <div className="text-center py-4">
-          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail className="w-8 h-8 text-text" />
+          <div className="flex items-center justify-center mb-2 w-[120px] h-[120px] mx-auto">
+            <img
+              src="/mail_sent.svg"
+              alt="CourierHubb Logo"
+              className="max-w-full max-h-full object-contain"
+            />
           </div>
-          <h3 className="text-lg font-semibold mb-2 font-manrope">
+          <h3 className="text-lg font-[800] mb-2 font-manrope">
             Check Your Email
           </h3>
           <p className="text-gray-600 mb-6 font-manrope text-sm">
-            Password reset link has been sent on your email address! Password reset link has been sent on your email address!
+            Password reset link has been sent on your email address.
           </p>
           <Button
             onClick={handleBackToLogin}

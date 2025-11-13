@@ -11,7 +11,6 @@ const AppInner = () => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
-  const publicRoutes = ["/login"];
   const publicRoutes = ["/login", "/forgot-password"];
   const isPublicRoute = publicRoutes.includes(location.pathname);
 

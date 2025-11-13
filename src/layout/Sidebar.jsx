@@ -23,7 +23,7 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
   };
 
   const sidebarContent = (
-    <div className="h-full flex flex-col bg-[#fafe11] shadow-xl relative">
+    <div className="h-full flex flex-col bg-primary shadow-xl relative">
       {/* Header */}
       <Link to="/home">
         <div className="cursor-pointer py-10 px-4 flex items-center">
@@ -44,14 +44,14 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
                 "flex items-center space-x-3 px-3 rounded-[12px] transition-all duration-200 group",
                 "h-[48px]", 
                 isActive
-                  ? "bg-black text-[#fafe11]"
+                  ? "bg-black text-primary"
                   : "text-black hover:bg-black/10"
               )}
             >
               <Icon
                 icon={item.icon}
                 className={`w-8 h-8 ${
-                  isActive ? "text-[#fafe11]" : "text-black"
+                  isActive ? "text-primary" : "text-black"
                 }`}
               />
               <span

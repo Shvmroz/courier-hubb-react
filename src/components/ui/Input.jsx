@@ -22,7 +22,7 @@ const Input = React.forwardRef(
     };
 
     const combinedClassName = `
-      ${fullWidth ? 'w-full' : ''} h-12 px-3 rounded-lg border text-sm font-manrope
+      ${fullWidth ? 'w-full' : ''} h-[56px] px-4 rounded-xl border text-sm font-manrope
       focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400
       bg-white text-text placeholder-gray-400 transition-all duration-200
       ${error ? 'border-red-500 focus:ring-red-400 focus:border-red-400' : 'border-gray-300 hover:border-gray-400'}
