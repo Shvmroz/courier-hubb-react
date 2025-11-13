@@ -10,11 +10,10 @@ import { Icon } from "@iconify/react";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -27,7 +26,7 @@ const SignupPage = () => {
   const navigate = useNavigate();
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -66,12 +65,13 @@ const SignupPage = () => {
 
   const handleVerificationSuccess = async () => {
     const userData = {
-      id: '1',
+      id: "1",
       email: formData.email,
-      name: `${formData.firstName} ${formData.lastName}`,
-      avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?w=100&h=100&fit=crop&crop=face'
+      name: formData.fullName,
+      avatar:
+        "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?w=100&h=100&fit=crop&crop=face",
     };
-    
+
     await login(userData);
     navigate("/home");
   };
@@ -94,7 +94,7 @@ const SignupPage = () => {
         <div className="w-full max-w-[90%]">
           <div className="p-4 w-full">
             <h1 className="text-3xl font-bold text-text mb-2 font-manrope">
-              Sign Up
+            Sign Up for an Account
             </h1>
             <p className="text-gray-600 mb-4 font-semibold text-sm">
               Create your account to get started.
@@ -107,59 +107,56 @@ const SignupPage = () => {
             )}
 
             <form onSubmit={handleSubmit} className="">
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="mb-4">
                 <Input
                   type="text"
-                  placeholder="First Name"
-                  value={formData.firstName}
-                  onChange={(e) => handleInputChange('firstName', e.target.value)}
-                  required
-                  fullWidth
-                />
-                <Input
-                  type="text"
-                  placeholder="Last Name"
-                  value={formData.lastName}
-                  onChange={(e) => handleInputChange('lastName', e.target.value)}
+                  placeholder="Full Name"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    handleInputChange("fullName", e.target.value)
+                  }
                   required
                   fullWidth
                 />
               </div>
-
-              <div className="mb-6">
+              <div className="mb-4">
                 <Input
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="Email address"
                   value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
                   required
                   fullWidth
                 />
               </div>
 
-              <div className="mb-6">
+              <div className="mb-4">
                 <Input
                   type="password"
                   placeholder="Enter your password"
                   value={formData.password}
-                  onChange={(e) => handleInputChange('password', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("password", e.target.value)
+                  }
                   required
                   fullWidth
                 />
               </div>
 
-              <div className="mb-6">
+              <div className="mb-4">
                 <Input
                   type="password"
                   placeholder="Confirm your password"
                   value={formData.confirmPassword}
-                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("confirmPassword", e.target.value)
+                  }
                   required
                   fullWidth
                 />
               </div>
 
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-4">
                 <div className="relative">
                   <input
                     type="checkbox"
@@ -184,7 +181,10 @@ const SignupPage = () => {
                 </div>
                 <span className="text-sm text-gray-800 font-manrope">
                   I agree to the{" "}
-                  <a href="#" className="text-text font-semibold hover:text-gray-600 no-underline">
+                  <a
+                    href="#"
+                    className="text-text font-semibold hover:text-gray-600 no-underline"
+                  >
                     Terms and Conditions
                   </a>
                 </span>
@@ -270,7 +270,7 @@ const SignupPage = () => {
           <p className="text-gray-600 mb-6 font-manrope text-sm">
             Enter OTP sent to your email to verify your account
           </p>
-          
+
           <div className="mb-6">
             <PinInput
               length={6}
