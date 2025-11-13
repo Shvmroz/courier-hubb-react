@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import Modal from "../../components/ui/Modal";
-import { Mail } from "lucide-react";
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");

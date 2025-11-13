@@ -9,27 +9,28 @@ import MessagesPage from "../pages/messages/messages";
 import ProfilePage from "../pages/profile/profile";
 import ChangePasswordPage from "../pages/change-password/change-password";
 import NotFoundPage from "../pages/not-found/not-found";
+import MainLayout from "../layout/MainLayout";
 
-const AppRoutes = () => {
+const AppRoutes = ({ user }) => {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/home" replace />} />
+      <Route path="/signup" element={!user ? <SignupPage /> : <Navigate to="/home" replace />} />
+      <Route path="/forgot-password" element={!user ? <ForgotPasswordPage /> : <Navigate to="/home" replace />} />
 
       {/* Protected Routes */}
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/post-job" element={<PostJobPage />} />
-      <Route path="/jobs" element={<JobsPage />} />
-      <Route path="/messages" element={<MessagesPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/change-password" element={<ChangePasswordPage />} />
+      <Route path="/home" element={user ? <MainLayout><HomePage /></MainLayout> : <Navigate to="/login" replace />} />
+      <Route path="/post-job" element={user ? <MainLayout><PostJobPage /></MainLayout> : <Navigate to="/login" replace />} />
+      <Route path="/jobs" element={user ? <MainLayout><JobsPage /></MainLayout> : <Navigate to="/login" replace />} />
+      <Route path="/messages" element={user ? <MainLayout><MessagesPage /></MainLayout> : <Navigate to="/login" replace />} />
+      <Route path="/profile" element={user ? <MainLayout><ProfilePage /></MainLayout> : <Navigate to="/login" replace />} />
+      <Route path="/change-password" element={user ? <MainLayout><ChangePasswordPage /></MainLayout> : <Navigate to="/login" replace />} />
 
-      {/* Redirect root → home */}
-      <Route path="/" element={<Navigate to="/home" replace />} />
+      {/* Root redirect */}
+      <Route path="/" element={user ? <Navigate to="/home" replace /> : <Navigate to="/login" replace />} />
 
-      {/* Catch-all route */}
+      {/* Catch-all */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

@@ -8,10 +8,6 @@ import "./index.css";
 
 const AppInner = () => {
   const { user, loading } = useApp();
-  const location = useLocation();
-
-  const publicRoutes = ["/login", "/forgot-password" ,"/signup"];
-  const isPublicRoute = publicRoutes.includes(location.pathname);
 
   if (loading) {
     return (
@@ -21,28 +17,7 @@ const AppInner = () => {
     );
   }
 
-  // If authenticated and tries to go to /login → redirect
-  if (user && (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgot-password")) {
-    return <Navigate to="/home" replace />;
-  }
-
-  // Public route
-  const publicRoutes2 = ["/login", "/signup", "/forgot-password"];
-  if (isPublicRoute) {
-    return <AppRoutes />;
-  }
-
-  // Protected routes (with layout)
-  if (user) {
-    return (
-      <MainLayout>
-        <AppRoutes />
-      </MainLayout>
-    );
-  }
-
-  // If not authenticated, redirect to login
-  return <Navigate to="/login" replace />;
+  return <AppRoutes user={user} />;
 };
 
 const App = () => {
