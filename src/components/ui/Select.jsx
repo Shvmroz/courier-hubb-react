@@ -1,3 +1,24 @@
+//// ===================== Usage ===================== ////
+// const statusOptions = [
+//   { value: "all", label: "All Status" },
+//   { value: "published", label: "Published" },
+//   { value: "draft", label: "Draft" },
+//   { value: "cancelled", label: "Cancelled" },
+//   { value: "completed", label: "Completed" },
+// ];
+// <div>
+//   <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+//   <Select
+//     options={statusOptions}
+//     value={statusFilter}
+//     onChange={setStatusFilter}
+//     placeholder="Filter by status"
+//     className="pl-10"
+//     // // disabled={!isEditing}
+//     // // search={true}
+//   />
+// </div>;
+// ===========================================================
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Search } from "lucide-react";
 
@@ -74,7 +95,6 @@ const Select = ({
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
       <button
-      
         type="button"
         onClick={() => !disabled && setOpen(!open)}
         disabled={disabled}
