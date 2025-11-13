@@ -1,12 +1,10 @@
 import React from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { usePageContext } from "../contexts/PageContext";
+import { useApp } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Menu, Bell, Sun, Moon, User, LogOut, Lock, Search } from "lucide-react";
 
 const Navbar = ({ onMenuClick }) => {
-  const { user, logout } = useAuth();
-  const { currentPage } = usePageContext();
+  const { user, logout, currentPage } = useApp();
   const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = React.useState(false);
   const [showNotifications, setShowNotifications] = React.useState(false);

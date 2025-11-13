@@ -1,14 +1,13 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import { PageProvider } from "./contexts/PageContext";
+import { AppProvider, useApp } from "./contexts/AppContext";
 import AppRoutes from "./routes/Routes";
 import MainLayout from "./layout/MainLayout";
 import { Navigate, useLocation } from "react-router-dom";
 import "./index.css";
 
 const AppInner = () => {
-  const { user, loading } = useAuth();
+  const { user, loading } = useApp();
   const location = useLocation();
 
   const publicRoutes = ["/login", "/forgot-password"];
@@ -35,11 +34,9 @@ const AppInner = () => {
   // Protected routes (with layout)
   if (user) {
     return (
-      <PageProvider>
-        <MainLayout>
-          <AppRoutes />
-        </MainLayout>
-      </PageProvider>
+      <MainLayout>
+        <AppRoutes />
+      </MainLayout>
     );
   }
 
@@ -49,9 +46,9 @@ const AppInner = () => {
 
 const App = () => {
   return (
-    <AuthProvider>
+    <AppProvider>
       <AppInner />
-    </AuthProvider>
+    </AppProvider>
   );
 };
 

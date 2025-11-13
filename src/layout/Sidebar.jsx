@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import { usePageContext } from "../contexts/PageContext";
+import { useApp } from "../contexts/AppContext";
 import { Icon } from "@iconify/react";
 
 const cn = (...classes) => classes.filter(Boolean).join(" ");
@@ -15,7 +15,7 @@ const menuItems = [
 const Sidebar = ({ open, onClose, variant = "temporary" }) => {
   const location = useLocation();
   const pathname = location.pathname;
-  const { setCurrentPage } = usePageContext();
+  const { setCurrentPage } = useApp();
 
   const handleNavClick = (pageName) => {
     setCurrentPage(pageName);

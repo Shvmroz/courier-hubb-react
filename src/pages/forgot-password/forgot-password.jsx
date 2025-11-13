@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField } from "../components/ui/Input";
-import Button from "../components/ui/Button";
-import Modal from "../components/ui/Modal";
+import { Input } from "../../components/ui/Input";
+import Button from "../../components/ui/Button";
+import Modal from "../../components/ui/Modal";
 import { Mail } from "lucide-react";
 
 const ForgotPasswordPage = () => {
@@ -52,7 +52,7 @@ const ForgotPasswordPage = () => {
             </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-              <TextField
+              <Input
                 type="email"
                 placeholder="Samu@gmail.com"
                 value={email}

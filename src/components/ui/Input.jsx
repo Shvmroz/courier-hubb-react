@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-const Input = React.forwardRef(
+export const Input = React.forwardRef(
   ({ 
     className = "", 
     type = "text", 
@@ -70,12 +70,5 @@ const Input = React.forwardRef(
   }
 );
 
-// TextField component for compatibility
-const TextField = React.forwardRef((props, ref) => {
-  return <Input ref={ref} {...props} fullWidth />;
-});
-
 Input.displayName = "Input";
-TextField.displayName = "TextField";
-
-export { Input, TextField };
+export default Input;

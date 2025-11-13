@@ -1,7 +1,7 @@
-import Button from '../components/ui/Button';
+import Button from '../../components/ui/Button';
 import { Briefcase } from 'lucide-react';
 
-const Jobs = () => {
+const JobsPage = () => {
   return (
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
@@ -31,4 +31,4 @@ const Jobs = () => {
   );
 };
 
-export default Jobs;
+export default JobsPage;

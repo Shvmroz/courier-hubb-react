@@ -1,7 +1,7 @@
-import Button from '../components/ui/Button';
+import Button from '../../components/ui/Button';
 import { MessageCircle } from 'lucide-react';
 
-const Messages = () => {
+const MessagesPage = () => {
   return (
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
@@ -31,4 +31,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default MessagesPage;

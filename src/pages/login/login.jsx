@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { TextField } from "../components/ui/Input";
-import Button from "../components/ui/Button";
+import { useApp } from "../../contexts/AppContext";
+import { Input } from "../../components/ui/Input";
+import Button from "../../components/ui/Button";
 import { Chrome, Apple, Facebook } from "lucide-react";
 import { Icon } from "@iconify/react";
 
@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const { login } = useAuth();
+  const { login } = useApp();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -64,7 +64,7 @@ const LoginPage = () => {
 
             <form onSubmit={handleSubmit} className="">
               <div className="mb-6">
-                <TextField
+                <Input
                   type="email"
                   placeholder="Enter your email address"
                   value={email}
@@ -75,7 +75,7 @@ const LoginPage = () => {
               </div>
 
               <div className="mb-6">
-                <TextField
+                <Input
                   type="password"
                   placeholder="Enter your password"
                   value={password}
@@ -177,12 +177,12 @@ const LoginPage = () => {
 
             <p className="text-center text-sm text-gray-600 font-manrope">
               Don't have an account?{" "}
-              <a
-                href="#"
-                className="text-text font-bold hover:text-gray-600 no-underline font-manrope"
+              <button
+                onClick={() => navigate("/signup")}
+                className="text-text font-bold hover:text-gray-600 no-underline font-manrope bg-transparent border-none cursor-pointer"
               >
                 Sign Up
-              </a>
+              </button>
             </p>
           </div>
         </div>
