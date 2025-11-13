@@ -27,7 +27,8 @@ const AppInner = () => {
   }
 
   // Public route
-  const publicRoutes = ["/login", "/signup", "/forgot-password"];
+  const publicRoutes2 = ["/login", "/signup", "/forgot-password"];
+  if (isPublicRoute) {
     return <AppRoutes />;
   }
 
