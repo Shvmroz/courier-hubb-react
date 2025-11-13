@@ -7,9 +7,9 @@ const cn = (...classes) => classes.filter(Boolean).join(" ");
 
 const menuItems = [
   { text: "Home", icon: "material-symbols:home-rounded", path: "/home" },
-  { text: "Post a Job", icon: "mdi:plus-circle-outline", path: "/post-job" },
-  { text: "My Jobs", icon: "mdi:briefcase-outline", path: "/jobs" },
-  { text: "Messages", icon: "mdi:message-text-outline", path: "/messages" },
+  { text: "Post a Job", icon: "ph:plus-fill", path: "/post-job" },
+  { text: "My Jobs", icon: "basil:bag-solid", path: "/jobs" },
+  { text: "Messages", icon: "ant-design:message-filled", path: "/messages" },
 ];
 
 const Sidebar = ({ open, onClose, variant = "temporary" }) => {
