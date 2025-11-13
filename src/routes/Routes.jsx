@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "../pages/login/login";
 import SignupPage from "../pages/signup/signup";
-import SignupPage from "../pages/signup/signup";
 import ForgotPasswordPage from "../pages/forgot-password/forgot-password";
 import HomePage from "../pages/home/home";
 import PostJobPage from "../pages/post-job/post-job";
@@ -16,7 +15,6 @@ const AppRoutes = () => {
     <Routes>
       {/* Public Routes */}
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 

@@ -10,7 +10,7 @@ const AppInner = () => {
   const { user, loading } = useApp();
   const location = useLocation();
 
-  const publicRoutes = ["/login", "/forgot-password"];
+  const publicRoutes = ["/login", "/forgot-password" ,"/signup"];
   const isPublicRoute = publicRoutes.includes(location.pathname);
 
   if (loading) {
