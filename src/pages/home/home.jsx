@@ -97,11 +97,11 @@ const HomePage = () => {
         <div className="bg-gradient-to-br from-gray-800 to-gray-700 text-white p-8 rounded-3xl mb-8 relative overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-2">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 font-manrope">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4  ">
                 Need to send something? Post your first job for{' '}
                 <span className="text-primary">FREE!</span>
               </h1>
-              <h2 className="text-xl opacity-90 font-manrope font-normal">
+              <h2 className="text-xl opacity-90   font-normal">
                 Find Drivers, Post Jobs, And Get Things Moving.
               </h2>
             </div>
@@ -119,10 +119,10 @@ const HomePage = () => {
             {/* Quick Stats */}
             <div className="bg-white p-6 mb-6 rounded-3xl shadow-sm">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-semibold font-manrope">
+                <h3 className="text-xl font-semibold  ">
                   Quick Stats
                 </h3>
-                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-manrope">
+                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm  ">
                   Last 7 days
                 </span>
               </div>
@@ -132,10 +132,10 @@ const HomePage = () => {
                   return (
                     <div key={stat.label} className="bg-text text-white text-center rounded-2xl p-6">
                       <Icon className="w-8 h-8 mb-2 mx-auto" style={{ color: stat.color }} />
-                      <div className="text-3xl font-bold mb-2 font-manrope">
+                      <div className="text-3xl font-bold mb-2  ">
                             {stat.value}
                       </div>
-                      <div className="text-sm opacity-80 font-manrope">
+                      <div className="text-sm opacity-80  ">
                             {stat.label}
                       </div>
                     </div>
@@ -146,7 +146,7 @@ const HomePage = () => {
 
             {/* Posted Jobs */}
             <div className="bg-white p-6 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-6 font-manrope">
+              <h3 className="text-xl font-semibold mb-6  ">
                 Posted Jobs
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -158,12 +158,12 @@ const HomePage = () => {
                               {job.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold font-manrope">
+                          <h4 className="font-semibold  ">
                                 {job.title}
                           </h4>
                           <div className="flex items-center gap-1">
                             <MapPin className="w-4 h-4 text-gray-500" />
-                            <span className="text-sm text-gray-500 font-manrope">
+                            <span className="text-sm text-gray-500  ">
                                   {job.location}
                             </span>
                           </div>
@@ -181,40 +181,40 @@ const HomePage = () => {
           <div>
             {/* Total Spend */}
             <div className="bg-white p-6 mb-6 rounded-3xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-6 font-manrope">
+              <h3 className="text-xl font-semibold mb-6  ">
                 Total Spend
               </h3>
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 font-manrope">
+                  <span className="text-sm text-gray-600  ">
                     On Completed Jobs
                   </span>
-                  <span className="font-semibold font-manrope">
+                  <span className="font-semibold  ">
                     $250.00
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 font-manrope">
+                  <span className="text-sm text-gray-600  ">
                     This Month
                   </span>
-                  <span className="font-semibold font-manrope">
+                  <span className="font-semibold  ">
                     $120
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 font-manrope">
+                  <span className="text-sm text-gray-600  ">
                     Last Month
                   </span>
-                  <span className="font-semibold font-manrope">
+                  <span className="font-semibold  ">
                     $90
                   </span>
                 </div>
                 <div className="border-t pt-4">
                   <div className="flex justify-between">
-                    <span className="font-semibold font-manrope">
+                    <span className="font-semibold  ">
                     Total
                     </span>
-                    <span className="font-semibold font-manrope">
+                    <span className="font-semibold  ">
                     $250
                     </span>
                   </div>
@@ -225,7 +225,7 @@ const HomePage = () => {
             {/* Messages */}
             <div className="bg-white p-6 rounded-3xl shadow-sm">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold font-manrope">
+                <h3 className="text-xl font-semibold  ">
                   Messages
                 </h3>
                 <Button variant="text" size="small" color="primary">
@@ -243,14 +243,14 @@ const HomePage = () => {
                       />
                       <div className="flex-1">
                         <div className="flex justify-between items-center">
-                          <h4 className="font-semibold text-sm font-manrope">
+                          <h4 className="font-semibold text-sm  ">
                               {message.name}
                           </h4>
-                          <span className="text-xs text-gray-500 font-manrope">
+                          <span className="text-xs text-gray-500  ">
                               {message.time}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 font-manrope">
+                        <p className="text-sm text-gray-600  ">
                             {message.message}
                         </p>
                       </div>

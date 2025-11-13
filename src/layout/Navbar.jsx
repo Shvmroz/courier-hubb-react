@@ -34,7 +34,7 @@ const Navbar = ({ onMenuClick }) => {
 
     {/* Page Title */}
     <div className="hidden lg:block">
-      <h1 className="text-xl font-semibold text-gray-900 font-manrope">
+      <h1 className="text-xl font-semibold text-gray-900  ">
         {currentPage}
       </h1>
     </div>
@@ -78,10 +78,10 @@ const Navbar = ({ onMenuClick }) => {
         </div>
 
         <div className="hidden md:block text-left">
-          <div className="text-sm font-medium text-gray-900 font-manrope">
+          <div className="text-sm font-medium text-gray-900  ">
             {user?.name}
           </div>
-          <div className="text-xs text-gray-500 font-manrope">
+          <div className="text-xs text-gray-500  ">
             {user?.email}
           </div>
         </div>
@@ -96,14 +96,14 @@ const Navbar = ({ onMenuClick }) => {
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
             <button
               onClick={() => handleNavigation("/profile")}
-              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-manrope"
+              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
             >
               <User className="w-4 h-4" />
               <span>Profile Settings</span>
             </button>
             <button
               onClick={() => handleNavigation("/change-password")}
-              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-manrope"
+              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  "
             >
               <Lock className="w-4 h-4" />
               <span>Change Password</span>
@@ -111,7 +111,7 @@ const Navbar = ({ onMenuClick }) => {
             <div className="border-t border-gray-200 my-2"></div>
             <button
               onClick={handleLogoutClick}
-              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 font-manrope"
+              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100  "
             >
               <LogOut className="w-4 h-4" />
               <span>Logout</span>

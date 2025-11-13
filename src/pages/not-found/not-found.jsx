@@ -18,10 +18,10 @@ const NotFoundPage = () => {
       <div className="max-w-2xl mx-auto px-4">
         <div className="text-center">
           {/* Large 404 */}
-          <h1 className="text-6xl font-bold mb-4 font-manrope">404</h1>
+          <h1 className="text-6xl font-bold mb-4  ">404</h1>
 
           {/* Error message */}
-          <h2 className="text-2xl font-semibold mb-8 font-manrope">Page Not Found</h2>
+          <h2 className="text-2xl font-semibold mb-8  ">Page Not Found</h2>
 
           <div className="flex gap-4 justify-center">
             <Button 

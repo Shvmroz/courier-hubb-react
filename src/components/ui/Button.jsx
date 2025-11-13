@@ -16,10 +16,10 @@ const Button = React.forwardRef(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center whitespace-nowrap rounded-lg font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] font-manrope";
+      "inline-flex items-center justify-center whitespace-nowrap rounded-lg font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]  ";
 
     const sizes = {
-      small: "h-8 px-3 text-sm",
+      small: "h-8 px-3 text-xs",
       medium: "h-10 px-4 text-sm",
       large: "h-12 px-6 text-base",
       default: "h-10 px-4 text-sm",

@@ -5,6 +5,7 @@ import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import { Chrome, Apple, Facebook } from "lucide-react";
 import { Icon } from "@iconify/react";
+import Checkbox from "../../components/ui/CheckBox";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("temp@gmail.com");
@@ -49,7 +50,7 @@ const LoginPage = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-white">
         <div className="w-full max-w-[90%]">
           <div className="p-4 w-full">
-            <h1 className="text-3xl font-bold text-text mb-2 font-manrope">
+            <h1 className="text-3xl font-bold text-text mb-2  ">
               Sign In
             </h1>
             <p className="text-gray-600 mb-4 font-semibold text-sm">
@@ -57,7 +58,7 @@ const LoginPage = () => {
             </p>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 font-manrope">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6  ">
                 {error}
               </div>
             )}
@@ -86,33 +87,15 @@ const LoginPage = () => {
               </div>
 
               <div className="flex justify-between items-center my-6">
-                <label className="flex items-center gap-2 cursor-pointer select-none">
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      className="peer appearance-none w-5 h-5 rounded-md border border-gray-300 
-                         transition-all duration-200 cursor-pointer 
-                         checked:bg-primary checked:border-primary"
-                    />
-                    <svg
-                      className={`absolute left-0 top-0 w-5 h-5 p-[2px] pointer-events-none transition-all duration-200 
-            ${rememberMe ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#212121"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <span className="text-sm text-gray-800 font-manrope">
-                    Remember me
-                  </span>
-                </label>
+                <Checkbox
+                  text={
+                    <span className="text-sm text-gray-800  ">
+                      Remember me
+                    </span>
+                  }
+                  checked={rememberMe}
+                  onChange={setRememberMe}
+                />
 
                 <button
                   type="button"
@@ -175,11 +158,11 @@ const LoginPage = () => {
               </a>
             </div>
 
-            <p className="text-center text-sm text-gray-600 font-manrope">
+            <p className="text-center text-sm text-gray-600  ">
               Don't have an account?{" "}
               <button
                 onClick={() => navigate("/signup")}
-                className="text-text font-bold hover:text-gray-600 no-underline font-manrope bg-transparent border-none cursor-pointer"
+                className="text-text font-bold hover:text-gray-600 no-underline   bg-transparent border-none cursor-pointer"
               >
                 Sign Up
               </button>

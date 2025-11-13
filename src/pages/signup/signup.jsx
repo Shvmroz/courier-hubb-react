@@ -7,6 +7,7 @@ import Modal from "../../components/ui/Modal";
 import PinInput from "../../components/ui/PinInput";
 import { CheckCircle } from "lucide-react";
 import { Icon } from "@iconify/react";
+import Checkbox from "../../components/ui/CheckBox";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -58,22 +59,20 @@ const SignupPage = () => {
     setPinCode(pin);
     // Simulate verification
     setTimeout(() => {
-      setShowVerification(false);
       setShowSuccess(true);
     }, 1000);
   };
 
   const handleVerificationSuccess = async () => {
-    const userData = {
-      id: "1",
-      email: formData.email,
-      name: formData.fullName,
-      avatar:
-        "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?w=100&h=100&fit=crop&crop=face",
-    };
-
-    await login(userData);
     navigate("/home");
+    setPinCode("");
+  };
+
+  const handleResendCode = () => {
+    setShowSuccess(false);
+    setPinCode("");
+    // You can show a small toast or alert if you want
+    alert("A new verification code has been sent to your email.");
   };
 
   const handleBackToForm = () => {
@@ -101,7 +100,7 @@ const SignupPage = () => {
             {!showVerification ? (
               <>
                 {/* Sign Up Form */}
-                <h1 className="text-3xl font-bold text-text mb-2 font-manrope">
+                <h1 className="text-3xl font-bold text-text mb-2  ">
                   Sign Up for an Account
                 </h1>
                 <p className="text-gray-600 mb-4 font-semibold text-sm">
@@ -109,7 +108,7 @@ const SignupPage = () => {
                 </p>
 
                 {error && (
-                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 font-manrope">
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6  ">
                     {error}
                   </div>
                 )}
@@ -132,7 +131,9 @@ const SignupPage = () => {
                       type="email"
                       placeholder="Email address"
                       value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
                       required
                       fullWidth
                     />
@@ -165,37 +166,15 @@ const SignupPage = () => {
                   </div>
 
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        checked={agreeTerms}
-                        onChange={(e) => setAgreeTerms(e.target.checked)}
-                        className="peer appearance-none w-5 h-5 rounded-md border border-gray-300 
-                           transition-all duration-200 cursor-pointer 
-                           checked:bg-primary checked:border-primary"
-                      />
-                      <svg
-                        className={`absolute left-0 top-0 w-5 h-5 p-[2px] pointer-events-none transition-all duration-200 
-              ${agreeTerms ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#212121"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-800 font-manrope">
-                      I agree to the{" "}
-                      <a
-                        href="#"
-                        className="text-text font-semibold hover:text-gray-600 no-underline"
-                      >
-                        Terms and Conditions
-                      </a>
-                    </span>
+                    <Checkbox
+                      text={
+                        <span className="text-gray-500">
+                          I agree to the <a href="#">Terms and Conditions</a>
+                        </span>
+                      }
+                      checked={agreeTerms}
+                      onChange={setAgreeTerms}
+                    />
                   </div>
 
                   <Button
@@ -250,38 +229,43 @@ const SignupPage = () => {
                   </a>
                 </div>
 
-                <p className="text-center text-sm text-gray-600 font-manrope">
+                <p className="text-center text-sm text-gray-600  ">
                   Already have an account?{" "}
                   <button
                     onClick={() => navigate("/login")}
-                    className="text-text font-bold hover:text-gray-600 no-underline font-manrope bg-transparent border-none cursor-pointer"
+                    className="text-text font-bold hover:text-gray-600 no-underline   bg-transparent border-none cursor-pointer"
                   >
-                    Sign In
+                    Log In
                   </button>
                 </p>
               </>
             ) : (
               <>
                 {/* PIN Verification Form */}
-                <h1 className="text-3xl font-bold text-text mb-2 font-manrope">
-                  Account Verification
-                </h1>
-                <p className="text-gray-600 mb-8 font-semibold text-sm">
-                  Enter OTP sent to your email to verify your account
-                </p>
+                <div className="text-center mb-10">
+                  <h1 className="text-3xl font-bold text-text mb-2  ">
+                    Account Verification
+                  </h1>
+                  <p className="text-gray-600 mb-[2.5rem] text-sm">
+                    Enter OTP sent to your email to verify your account
+                  </p>
 
-                <div className="mb-8">
-                  <PinInput
-                    length={6}
-                    value={pinCode}
-                    onChange={setPinCode}
-                    onComplete={handlePinComplete}
-                  />
+                  <div className="mb-6">
+                    <PinInput
+                      length={5}
+                      value={pinCode}
+                      onChange={setPinCode}
+                      onComplete={handlePinComplete}
+                    />
+                  </div>
+
+                  <span
+                    onClick={() => handleResendCode()}
+                    className="text-center text-sm bg-[#f1f4fb] py-2 px-6 rounded-full hover:bg-[#e8ecf1] cursor-pointer"
+                  >
+                    I haven't received a code
+                  </span>
                 </div>
-
-                <p className="text-center text-sm text-gray-500 mb-8 font-manrope">
-                  I haven't received a code
-                </p>
 
                 <div className="space-y-4">
                   <Button
@@ -294,16 +278,16 @@ const SignupPage = () => {
                   >
                     Confirm
                   </Button>
-
-                  <Button
-                    onClick={handleBackToForm}
-                    variant="outlined"
-                    color="default"
-                    fullWidth
-                    size="large"
-                  >
-                    Back to Sign Up
-                  </Button>
+                  <div className="flex justify-end">
+                    <Button
+                      onClick={handleBackToForm}
+                      variant="text"
+                      color="default"
+                      size="small"
+                    >
+                      Back to Sign Up
+                    </Button>
+                  </div>
                 </div>
               </>
             )}
@@ -323,10 +307,10 @@ const SignupPage = () => {
           <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-8 h-8 text-text" />
           </div>
-          <h3 className="text-xl font-bold mb-2 font-manrope">
+          <h3 className="text-xl font-bold mb-2  ">
             Verification Complete!
           </h3>
-          <p className="text-gray-600 mb-6 font-manrope text-sm">
+          <p className="text-gray-600 mb-6   text-sm">
             Your account has been verified successfully
           </p>
           <Button

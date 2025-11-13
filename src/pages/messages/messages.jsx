@@ -5,10 +5,10 @@ const MessagesPage = () => {
   return (
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-text mb-2 font-manrope">
+          <h1 className="text-4xl font-bold text-text mb-2  ">
             Messages
           </h1>
-          <p className="text-xl text-gray-600 font-manrope font-normal">
+          <p className="text-xl text-gray-600   font-normal">
             Communicate with drivers and manage your conversations
           </p>
         </div>
@@ -17,10 +17,10 @@ const MessagesPage = () => {
           <div className="w-20 h-20 bg-primary text-text rounded-full flex items-center justify-center mx-auto mb-6">
             <MessageCircle className="w-10 h-10" />
           </div>
-          <h2 className="text-2xl font-semibold mb-4 font-manrope">
+          <h2 className="text-2xl font-semibold mb-4  ">
             No Messages Yet
           </h2>
-          <p className="text-gray-600 mb-8 font-manrope">
+          <p className="text-gray-600 mb-8  ">
             Once you post jobs and connect with drivers, your conversations will appear here
           </p>
           <Button variant="contained" color="primary" size="large">
