@@ -25,11 +25,24 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
   const sidebarContent = (
     <div className="h-full flex flex-col bg-primary shadow-xl relative">
       {/* Header */}
-      <Link to="/home">
-        <div className="cursor-pointer py-10 px-4 flex items-center">
-          <img src="/sidebar_logo.jpg" alt="Logo" className="w-[100%]" />
-        </div>
-      </Link>
+      <div className="flex items-center justify-between md:justify-center pe-3 relative">
+        {/* Logo */}
+        <Link to="/home">
+          <img
+            src="/logo.png"
+            alt="Sidebar Logo"
+            className="w-full max-w-[180px] md:max-w-[260px]"
+          />
+        </Link>
+
+        {/* Close button (mobile only) */}
+        <button
+          onClick={onClose}
+          className="md:hidden text-black hover:text-gray-700 transition-colors"
+        >
+          <Icon icon="mdi:close" className="w-7 h-7" />
+        </button>
+      </div>
 
       {/* Navigation */}
       <div className="flex-1 pb-4 pt-1 px-2 space-y-1 overflow-y-auto">
@@ -42,7 +55,7 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
               onClick={() => handleNavClick(item.text)}
               className={cn(
                 "flex items-center space-x-3 px-3 rounded-[12px] transition-all duration-200 group",
-                "h-[48px]", 
+                "h-[48px]",
                 isActive
                   ? "bg-black text-primary"
                   : "text-black hover:bg-black/10"
@@ -74,18 +87,10 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
 
   return (
     <>
-      {/* Mobile Overlay */}
-      {open && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={onClose}
-        />
-      )}
-
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar (Full Screen) */}
       <div
         className={cn(
-          "fixed inset-y-0 left-0 w-80 z-50 lg:hidden transition-transform duration-300",
+          "fixed inset-y-0 left-0 w-full z-50 lg:hidden bg-primary transition-transform duration-300",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
