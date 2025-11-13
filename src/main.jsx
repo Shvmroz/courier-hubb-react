@@ -22,12 +22,12 @@ const AppInner = () => {
   }
 
   // If authenticated and tries to go to /login → redirect
-  if (user && (location.pathname === "/login" || location.pathname === "/forgot-password")) {
+  if (user && (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgot-password")) {
     return <Navigate to="/home" replace />;
   }
 
   // Public route
-  if (isPublicRoute) {
+  const publicRoutes = ["/login", "/signup", "/forgot-password"];
     return <AppRoutes />;
   }
 
