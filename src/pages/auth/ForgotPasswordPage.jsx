@@ -4,7 +4,7 @@ import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import Modal from "../../components/ui/Modal";
 
-export const ForgotPasswordPage = () => {
+const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -42,12 +42,11 @@ export const ForgotPasswordPage = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-white">
         <div className="w-full max-w-[90%]">
           <div className="p-4 w-full flex flex-col space-y-3">
-            <h1 className="text-3xl font-bold text-text  ">
-              Forgot Password
-            </h1>
+            <h1 className="text-3xl font-bold text-text  ">Forgot Password</h1>
 
             <p className="text-gray-600 font-semibold text-sm">
-            Forgot your password? No worries! Enter your email <br/> below to receive a reset link.
+              Forgot your password? No worries! Enter your email <br /> below to
+              receive a reset link.
             </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -103,9 +102,7 @@ export const ForgotPasswordPage = () => {
               className="max-w-full max-h-full object-contain"
             />
           </div>
-          <h3 className="text-lg font-[800] mb-2  ">
-            Check Your Email
-          </h3>
+          <h3 className="text-lg font-[800] mb-2  ">Check Your Email</h3>
           <p className="text-gray-600 mb-6   text-sm">
             Password reset link has been sent on your email address.
           </p>
@@ -124,4 +121,4 @@ export const ForgotPasswordPage = () => {
     </div>
   );
 };
-
+export default ForgotPasswordPage;
