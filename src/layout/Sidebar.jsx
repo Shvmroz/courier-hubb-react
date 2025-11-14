@@ -2,12 +2,13 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useApp } from "../contexts/AppContext";
 import { Icon } from "@iconify/react";
+import PostJobModal from "../components/PostJobModal";
 
 const cn = (...classes) => classes.filter(Boolean).join(" ");
 
 const menuItems = [
   { text: "Home", icon: "material-symbols:home-rounded", path: "/home" },
-  { text: "Post a Job", icon: "ph:plus-fill", path: "/post-job" },
+  { text: "Post a Job", icon: "ph:plus-fill", path: "/post-job", isModal: true },
   { text: "My Jobs", icon: "basil:bag-solid", path: "/jobs" },
   { text: "Messages", icon: "ant-design:message-filled", path: "/messages" },
 ];
@@ -16,10 +17,20 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const { setCurrentPage } = useApp();
+  const [showPostJobModal, setShowPostJobModal] = React.useState(false);
 
   const handleNavClick = (pageName) => {
     setCurrentPage(pageName);
     if (variant === "temporary") onClose();
+  };
+
+  const handlePostJobClick = (item) => {
+    if (item.isModal) {
+      setShowPostJobModal(true);
+      if (variant === "temporary") onClose();
+    } else {
+      handleNavClick(item.text);
+    }
   };
 
   const sidebarContent = (
@@ -47,37 +58,71 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
       {/* Navigation */}
       <div className="flex-1 pb-4 pt-1 px-2 space-y-1 overflow-y-auto">
         {menuItems.map((item) => {
-          const isActive = pathname === item.path;
+          const isActive = pathname === item.path || (item.isModal && pathname.startsWith('/post-job'));
           return (
-            <Link
-              key={item.text}
-              to={item.path}
-              onClick={() => handleNavClick(item.text)}
-              className={cn(
-                "flex items-center space-x-3 px-3 rounded-[12px] transition-all duration-200 group",
-                "h-[48px]",
-                isActive
-                  ? "bg-black text-primary"
-                  : "text-black hover:bg-black/10"
-              )}
-            >
-              <Icon
-                icon={item.icon}
-                className={`w-8 h-8 ${
-                  isActive ? "text-primary" : "text-black"
-                }`}
-              />
-              <span
-                className={`text-md ${
-                  isActive ? "font-extrabold" : "font-medium"
-                }`}
+            item.isModal ? (
+              <button
+                key={item.text}
+                onClick={() => handlePostJobClick(item)}
+                className={cn(
+                  "flex items-center space-x-3 px-3 rounded-[12px] transition-all duration-200 group w-full text-left",
+                  "h-[48px]",
+                  isActive
+                    ? "bg-black text-primary"
+                    : "text-black hover:bg-black/10"
+                )}
               >
-                {item.text}
-              </span>
-            </Link>
+                <Icon
+                  icon={item.icon}
+                  className={`w-8 h-8 ${
+                    isActive ? "text-primary" : "text-black"
+                  }`}
+                />
+                <span
+                  className={`text-md ${
+                    isActive ? "font-extrabold" : "font-medium"
+                  }`}
+                >
+                  {item.text}
+                </span>
+              </button>
+            ) : (
+              <Link
+                key={item.text}
+                to={item.path}
+                onClick={() => handleNavClick(item.text)}
+                className={cn(
+                  "flex items-center space-x-3 px-3 rounded-[12px] transition-all duration-200 group",
+                  "h-[48px]",
+                  isActive
+                    ? "bg-black text-primary"
+                    : "text-black hover:bg-black/10"
+                )}
+              >
+                <Icon
+                  icon={item.icon}
+                  className={`w-8 h-8 ${
+                    isActive ? "text-primary" : "text-black"
+                  }`}
+                />
+                <span
+                  className={`text-md ${
+                    isActive ? "font-extrabold" : "font-medium"
+                  }`}
+                >
+                  {item.text}
+                </span>
+              </Link>
+            )
           );
         })}
       </div>
+
+      {/* Post Job Modal */}
+      <PostJobModal 
+        isOpen={showPostJobModal} 
+        onClose={() => setShowPostJobModal(false)} 
+      />
     </div>
   );
 
