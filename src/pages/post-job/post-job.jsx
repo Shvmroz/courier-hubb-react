@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import Button from '../../components/ui/Button';
+import PostJobModal from '../../components/PostJobModal';
 import { Plus } from 'lucide-react';
 
 const PostJobPage = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
+    <>
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-text mb-2  ">
@@ -23,11 +28,22 @@ const PostJobPage = () => {
           <p className="text-gray-600 mb-8  ">
             Fill out the job details to connect with available drivers in your area
           </p>
-          <Button variant="contained" color="primary" size="large">
+          <Button 
+            variant="contained" 
+            color="primary" 
+            size="large"
+            onClick={() => setShowModal(true)}
+          >
             Start Creating Job
           </Button>
         </div>
       </div>
+
+      <PostJobModal 
+        isOpen={showModal} 
+        onClose={() => setShowModal(false)} 
+      />
+    </>
   );
 };
 
