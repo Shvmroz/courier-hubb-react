@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const PostJobModal = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState("driver");
+  const [selectedOption, setSelectedOption] = useState("");
   const navigate = useNavigate();
 
   const driverOptions = [
@@ -16,43 +17,81 @@ const PostJobModal = ({ isOpen, onClose }) => {
     { value: "household", label: "Household Removals", icon: "mdi:trolley" },
   ];
 
-  const handleDriverSelect = (driverType) => {
-    onClose();
-    navigate(`/post-job?type=${driverType}`);
+  const handleDone = () => {
+    if (activeTab === "driver" && selectedOption) {
+      onClose();
+      navigate(`/post-job?type=${selectedOption}`);
+      setSelectedOption(""); // Reset selection
+    } else if (activeTab === "waste") {
+      onClose();
+      navigate("/post-job?type=waste");
+    }
   };
 
-  const handleWasteManagerSelect = () => {
+  const handleClose = () => {
+    setSelectedOption(""); // Reset selection when closing
     onClose();
-    navigate("/post-job?type=waste");
   };
 
   const renderDriverOptions = () => {
     return (
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Driver Type</h3>
-        <div className="grid grid-cols-1 gap-3">
-          {driverOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => handleDriverSelect(option.value)}
-              className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">Driver</label>
+          <div className="relative">
+            <select
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+              className="w-full h-12 px-4 pr-10 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none text-gray-700"
             >
-              <div className="flex items-center gap-3">
-                <Icon icon={option.icon} className="w-6 h-6 text-primary" />
-                <span className="font-medium text-gray-900">{option.label}</span>
-              </div>
-              <Icon icon="majesticons:chevron-right" className="w-5 h-5 text-gray-400" />
-            </button>
-          ))}
+              <option value="">Select</option>
+              {driverOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <Icon 
+              icon="mdi:chevron-down" 
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" 
+            />
+          </div>
         </div>
+
+        {/* Show selected option with highlight */}
+        {selectedOption && (
+          <div className="space-y-2">
+            {driverOptions.map((option) => (
+              <div
+                key={option.value}
+                className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
+                  selectedOption === option.value
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-200 bg-gray-50"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <Icon icon={option.icon} className="w-5 h-5 text-gray-600" />
+                  <span className="text-gray-700 font-medium">{option.label}</span>
+                </div>
+                {selectedOption === option.value && (
+                  <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                    544 Fill × 21
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
         
-        <div className="flex justify-center pt-4">
+        <div className="flex justify-center pt-6">
           <Button
-            onClick={() => {/* Handle Done if needed */}}
+            onClick={handleDone}
             variant="contained"
             color="primary"
             size="large"
-            className="px-12"
+            className="px-16"
+            disabled={!selectedOption}
           >
             Done
           </Button>
@@ -68,12 +107,13 @@ const PostJobModal = ({ isOpen, onClose }) => {
         <h3 className="text-lg font-semibold text-gray-900 mb-2">Waste Removal</h3>
         <p className="text-gray-600 mb-6">Waste removal functionality coming soon</p>
         <Button
-          onClick={handleWasteManagerSelect}
+          onClick={handleDone}
           variant="contained"
           color="primary"
           size="large"
+          className="px-16"
         >
-          Continue
+          Done
         </Button>
       </div>
     );
@@ -82,7 +122,7 @@ const PostJobModal = ({ isOpen, onClose }) => {
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title="Create Job"
       size="md"
       hideFooter={true}
@@ -91,20 +131,26 @@ const PostJobModal = ({ isOpen, onClose }) => {
         {/* Tabs */}
         <div className="flex bg-gray-100 rounded-lg p-1">
           <button
-            onClick={() => setActiveTab("driver")}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+            onClick={() => {
+              setActiveTab("driver");
+              setSelectedOption("");
+            }}
+            className={`flex-1 py-3 px-4 rounded-md text-sm font-medium transition-colors ${
               activeTab === "driver"
-                ? "bg-primary text-black"
+                ? "bg-primary text-black shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
             Driver
           </button>
           <button
-            onClick={() => setActiveTab("waste")}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+            onClick={() => {
+              setActiveTab("waste");
+              setSelectedOption("");
+            }}
+            className={`flex-1 py-3 px-4 rounded-md text-sm font-medium transition-colors ${
               activeTab === "waste"
-                ? "bg-primary text-black"
+                ? "bg-primary text-black shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
@@ -113,7 +159,7 @@ const PostJobModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Content */}
-        <div className="min-h-[300px]">
+        <div className="min-h-[400px]">
           {activeTab === "driver" ? renderDriverOptions() : renderWasteManager()}
         </div>
       </div>
