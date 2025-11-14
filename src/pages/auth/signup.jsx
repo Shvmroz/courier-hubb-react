@@ -6,7 +6,6 @@ import Button from "../../components/ui/Button";
 import Modal from "../../components/ui/Modal";
 import PinInput from "../../components/ui/PinInput";
 import { Icon } from "@iconify/react";
-import Checkbox from "../../components/ui/CheckBox";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
