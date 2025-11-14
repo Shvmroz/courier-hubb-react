@@ -4,7 +4,6 @@ import { useApp } from "../../contexts/AppContext";
 import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import { Icon } from "@iconify/react";
-import Checkbox from "../../components/ui/CheckBox";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("temp@gmail.com");
@@ -86,15 +85,7 @@ const LoginPage = () => {
               </div>
 
               <div className="flex justify-between items-center my-6">
-                <Checkbox
-                  text={
-                    <span className="text-sm text-gray-800  ">
-                      Remember me
-                    </span>
-                  }
-                  checked={rememberMe}
-                  onChange={setRememberMe}
-                />
+            
 
                 <button
                   type="button"
