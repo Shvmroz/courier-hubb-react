@@ -43,7 +43,7 @@ const Modal = ({
       >
         {/* Header */}
 
-        {hideHeader && (
+        {!hideHeader && (
           <div className="flex items-center justify-between p-4 border-gray-200 dark:border-gray-700 flex-shrink-0">
             <div className="flex items-center gap-1">
               {icon && <span>{icon}</span>}

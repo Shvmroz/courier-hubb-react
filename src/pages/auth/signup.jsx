@@ -5,7 +5,6 @@ import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import Modal from "../../components/ui/Modal";
 import PinInput from "../../components/ui/PinInput";
-import { CheckCircle } from "lucide-react";
 import { Icon } from "@iconify/react";
 import Checkbox from "../../components/ui/CheckBox";
 
@@ -117,7 +116,7 @@ const SignupPage = () => {
                   <div className="mb-4">
                     <Input
                       type="text"
-                      placeholder="Full Name"
+                      placeholder="Full name"
                       value={formData.fullName}
                       onChange={(e) =>
                         handleInputChange("fullName", e.target.value)
@@ -274,7 +273,7 @@ const SignupPage = () => {
                     color="primary"
                     fullWidth
                     size="large"
-                    disabled={pinCode.length !== 6}
+                    disabled={pinCode.length !== 5}
                   >
                     Confirm
                   </Button>
@@ -304,8 +303,8 @@ const SignupPage = () => {
         hideHeader={true}
       >
         <div className="text-center py-4">
-          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-8 h-8 text-text" />
+          <div className="w-[100px] h-[100px] rounded-full flex items-center justify-center mx-auto mb-4">
+           <img src="/verification.png" alt="verification Logo" className="max-w-sm max-h-full object-contain" />
           </div>
           <h3 className="text-xl font-bold mb-2  ">
             Verification Complete!

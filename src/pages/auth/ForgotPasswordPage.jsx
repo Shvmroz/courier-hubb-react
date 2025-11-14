@@ -4,7 +4,7 @@ import { Input } from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import Modal from "../../components/ui/Modal";
 
-const ForgotPasswordPage = () => {
+export const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -93,6 +93,7 @@ const ForgotPasswordPage = () => {
         onClose={() => setShowModal(false)}
         size="sm"
         hideFooter={true}
+        hideHeader={true}
       >
         <div className="text-center py-4">
           <div className="flex items-center justify-center mb-2 w-[120px] h-[120px] mx-auto">
@@ -124,4 +125,3 @@ const ForgotPasswordPage = () => {
   );
 };
 
-export default ForgotPasswordPage;

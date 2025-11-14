@@ -58,7 +58,6 @@ export const NotificationsList = ({ onClose }) => {
             <span
               onClick={() => {
                 markAllNotificationsAsRead();
-                if (onClose) onClose();
               }}
               className="text-xs text-gray-600 hover:text-gray-800 font-medium cursor-pointer"
             >

@@ -98,7 +98,7 @@ const Select = ({
         type="button"
         onClick={() => !disabled && setOpen(!open)}
         disabled={disabled}
-        className={`w-full h-10 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-left text-sm flex items-center justify-between 
+        className={`w-full h-8 px-2 ps-3 border border-gray-200 dark:border-gray-600 rounded-lg text-left text-xs font-semibold flex items-center justify-between 
           ${
             !value && value !== false
               ? "text-gray-500 dark:text-gray-400"
@@ -108,7 +108,7 @@ const Select = ({
       >
         <span>{selectedOption?.label || placeholder}</span>
         <ChevronDown
-          className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ms-2 ${open ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -142,10 +142,10 @@ const Select = ({
                   key={String(option.value)}
                   type="button"
                   onClick={() => handleOptionClick(String(option.value))}
-                  className={`w-full px-3 py-2 text-left text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-600 
+                  className={`w-full px-3 py-2 text-left text-xs font-semibold transition-colors hover:bg-amber-100/50 dark:hover:bg-gray-600 
                     ${
                       normalize(option.value) === normalizedValue
-                        ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
+                        ? "bg-amber-100 dark:bg-amber-900/20 text-yellow-700 dark:text-amber-300"
                         : ""
                     }`}
                 >

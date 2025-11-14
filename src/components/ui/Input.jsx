@@ -44,6 +44,7 @@ export const Input = React.forwardRef(
             ref={ref}
             onKeyDown={handleKeyDown}
             className={combinedClassName}
+            required={required}
             {...props}
           />
 

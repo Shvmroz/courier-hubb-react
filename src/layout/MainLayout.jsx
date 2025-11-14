@@ -6,7 +6,7 @@ const MainLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+    <div className="flex h-screen bg-white overflow-hidden">
       {/* Permanent Sidebar for desktop */}
       <div className="hidden lg:flex lg:flex-shrink-0">
         <Sidebar open={true} onClose={() => {}} variant="permanent" />
@@ -36,7 +36,7 @@ const MainLayout = ({ children }) => {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+        <main className="flex-1 overflow-y-auto bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {children}
           </div>

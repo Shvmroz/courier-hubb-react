@@ -75,7 +75,6 @@ export const AppProvider = ({ children }) => {
   
 
   useEffect(() => {
-    // Check if user is logged in (simulate checking localStorage/sessionStorage)
     const savedUser = localStorage.getItem('courierhubb_user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
@@ -84,30 +83,33 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   const login = async (emailOrUserData, password) => {
-    // Handle both login scenarios: email/password and direct user data
-    if (typeof emailOrUserData === 'object') {
-      // Direct user data (from signup)
-      const userData = emailOrUserData;
-      setUser(userData);
-      localStorage.setItem('courierhubb_user', JSON.stringify(userData));
-      return { success: true };
-    } else {
-      // Email/password login
-      const email = emailOrUserData;
-      if (email && password) {
-        const userData = {
-          id: '1',
-          email,
-          name: 'John Doe',
-          avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?w=100&h=100&fit=crop&crop=face'
-        };
-        setUser(userData);
-        localStorage.setItem('courierhubb_user', JSON.stringify(userData));
-        return { success: true };
-      }
-      return { success: false, error: 'Invalid credentials' };
-    }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (typeof emailOrUserData === 'object') {
+          const userData = emailOrUserData;
+          setUser(userData);
+          localStorage.setItem('courierhubb_user', JSON.stringify(userData));
+          resolve({ success: true });
+        } else {
+          const email = emailOrUserData;
+          if (email && password) {
+            const userData = {
+              id: '1',
+              email,
+              name: 'John Doe',
+              avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?w=100&h=100&fit=crop&crop=face'
+            };
+            setUser(userData);
+            localStorage.setItem('courierhubb_user', JSON.stringify(userData));
+            resolve({ success: true });
+          } else {
+            resolve({ success: false, error: 'Invalid credentials' });
+          }
+        }
+      }, 1500); 
+    });
   };
+  
 
     // ==========================Notifications===========================
 
@@ -149,7 +151,7 @@ export const AppProvider = ({ children }) => {
     loading,
     currentPage,
     setCurrentPage,
-    // notifications
+    // ----> notifications
     notifications,
     unreadNotificationsCount,
     markNotificationAsRead,

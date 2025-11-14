@@ -90,7 +90,7 @@ const Navbar = ({ onMenuClick }) => {
             onClick={() => setShowUserMenu(!showUserMenu)}
             className="flex items-center space-x-3 p-2 rounded-lg transition-colors"
           >
-            <div className="w-12 h-12 border-2 border-primary rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 border-2 border-primary rounded-full flex items-center justify-center">
               <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-gray-200">
                 {user?.avatar ? (
                   <img

@@ -5,19 +5,49 @@ import AppRoutes from "./routes/Routes";
 import MainLayout from "./layout/MainLayout";
 import { Navigate, useLocation } from "react-router-dom";
 import "./index.css";
+import FullScreenLoader from "./components/FullScreenLoader";
+import { useEffect, useState } from "react";
 
 const AppInner = () => {
   const { user, loading } = useApp();
+  const location = useLocation();
+  const publicRoutes = ["/login", "/forgot-password", "/signup"];
+  const isPublicRoute = publicRoutes.includes(location.pathname);
 
-  if (loading) {
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    if (loading) {
+      setShowLoader(true);
+    } else {
+      const timer = setTimeout(() => setShowLoader(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
+
+  if (showLoader) {
+    return <FullScreenLoader />;
+  }
+
+  if (user && isPublicRoute) {
+    return <Navigate to="/home" replace />;
+  }
+
+  if (isPublicRoute) {
+    return <AppRoutes />;
+  }
+
+  
+
+  if (user) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
+      <MainLayout>
+        <AppRoutes />
+      </MainLayout>
     );
   }
 
-  return <AppRoutes user={user} />;
+  return <Navigate to="/login" replace />;
 };
 
 const App = () => {

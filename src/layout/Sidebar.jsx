@@ -25,7 +25,7 @@ const Sidebar = ({ open, onClose, variant = "temporary" }) => {
   const sidebarContent = (
     <div className="h-full flex flex-col bg-primary shadow-xl relative">
       {/* Header */}
-      <div className="flex items-center justify-between md:justify-center pe-3 relative">
+      <div className="flex items-center justify-between md:justify-center pe-3 relative h-28">
         {/* Logo */}
         <Link to="/home">
           <img
